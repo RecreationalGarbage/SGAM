@@ -1,5 +1,5 @@
 # SGAM
-Very basic GUI for GAM that allows manipulation of users, groups, and ous.
+Very basic GUI for GAM that allows manipulation of users, groups, and ous. Runs on windows 7/10.
 
 Poorly written in .net, but you can't beat the price.
 
