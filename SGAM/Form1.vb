@@ -60,6 +60,8 @@ Public Class SGAMForm
         Dim customExist As String = SGAMINI.IniReadValue(SectionName, CString) 'take the output from the custom command window and make it a string
         Dim argumentLabelText As String = argumentLabel.Text 'Convert the string from the hidden textbox into text, save it as a variable
         Dim OtherArguments As String = argumentBox.SelectedItem 'Defines case statment to look at the selected item in argumentbox
+        Dim NoDelCsvPath As String = "Keepcsv" 'The specific key in the ini file that has the value for admin priv check
+        Dim valuedel As String = SGAMINI.IniReadValue(SectionName, NoDelCsvPath) 'Checks the valudel string, blank means delete path to .csv file after execute, 1 is dont
         Dim CStringValue As String = ""
 
         'This case statment can be expanded to convert specific custom strings of text into commands, add matching string to "other" case of FirstPropertyBox
@@ -109,6 +111,13 @@ Public Class SGAMForm
         SW.Close()
         SR.Close()
 
+        If valuedel = "" Then
+            '*****This code removes the path to the csv after completion, comment for testing*****
+            WritePrivateProfileStringW(SectionName, CSVIniKey, CStringValue, iniPath)
+            '*****/This code removes the path to the csv after completion, comment for testing*****
+        ElseIf valuedel = "1" Then
+        End If
+
         WritePrivateProfileStringW(SectionName, CString, CStringValue, iniPath) 'Sets custom string to nothing after execute
 
     End Sub
@@ -118,11 +127,8 @@ Public Class SGAMForm
         Dim GamIniKey As String = "Directory" 'Defines key in .ini file
         Dim CSVIniKey As String = "CSV" 'Defines key in .ini file
         Dim CsvPath As String = SGAMINI.IniReadValue(SectionName, CSVIniKey) 'Save the inireadvalue output into a usable string
-        Dim CsvValue As String = ""
         Dim noupdatecheckstring As String = "Updatetxt" 'The specific key in the ini file that has the value for updatecheck
         Dim valuetxt As String = SGAMINI.IniReadValue(SectionName, noupdatecheckstring) 'Checks the noupdatecheckstring, blank is warn, 1 is disabled
-        Dim NoDelCsvPath As String = "Keepcsv" 'The specific key in the ini file that has the value for admin priv check
-        Dim valuedel As String = SGAMINI.IniReadValue(SectionName, NoDelCsvPath) 'Checks the valudel string, blank means delete path to .csv file after execute, 1 is dont
 
         '*****Code below here is experimental, might not be needed*****
         If valuetxt = "" Then
@@ -148,13 +154,6 @@ Public Class SGAMForm
         Else
             Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
             GAMThread.Start() 'Execute the gam process when button is clicked
-
-            If valuedel = "" Then
-                '*****This code removes the path to the csv after completion, comment for testing*****
-                WritePrivateProfileStringW(SectionName, CSVIniKey, CsvValue, iniPath)
-                '*****/This code removes the path to the csv after completion, comment for testing*****
-            ElseIf valuedel = "1" Then
-            End If
         End If
 
     End Sub

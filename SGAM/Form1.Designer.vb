@@ -200,7 +200,7 @@ Partial Class SGAMForm
         Me.versionlabel.Name = "versionlabel"
         Me.versionlabel.Size = New System.Drawing.Size(66, 13)
         Me.versionlabel.TabIndex = 18
-        Me.versionlabel.Text = "Version 1.01"
+        Me.versionlabel.Text = "Version 1.02"
         '
         'sgamMainMenuStrip
         '
@@ -222,19 +222,19 @@ Partial Class SGAMForm
         'DeleteConfigFileToolStripMenuItem
         '
         Me.DeleteConfigFileToolStripMenuItem.Name = "DeleteConfigFileToolStripMenuItem"
-        Me.DeleteConfigFileToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DeleteConfigFileToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.DeleteConfigFileToolStripMenuItem.Text = "Delete Config File"
         '
         'CopyCommandToolStripMenuItem
         '
         Me.CopyCommandToolStripMenuItem.Name = "CopyCommandToolStripMenuItem"
-        Me.CopyCommandToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CopyCommandToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.CopyCommandToolStripMenuItem.Text = "Copy Command"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'AdvancedOptionsToolStripMenuItem
