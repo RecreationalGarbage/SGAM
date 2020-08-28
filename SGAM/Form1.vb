@@ -206,7 +206,7 @@ Public Class SGAMForm
             Case "OU"
                 argumentBox.Items.Clear()
                 argumentBox.SelectionMode = SelectionMode.MultiExtended
-                argumentBox.Items.Add(" ou ~ou") 'OU
+                argumentBox.Items.Add(" org ~ou") 'OU
                 argumentBox.Items.Add(" description ~description") 'Description of the OU
                 argumentBox.Items.Add(" add users ~user")
                 argumentBox.Items.Add(" noinherit") 'Does not inherit defaults from parent OU
