@@ -5,7 +5,7 @@ Needs to be run on administrator account.
 
 Poorly written in .net, but you can't beat the price.
 
-[Download Latest](https://github.com/RecreationalGarbage/SGAM/releases/download/1.02/SGAM_1_0_2.zip)
+[Download Latest](https://github.com/RecreationalGarbage/SGAM/releases/download/1.03/SGAM_1_0_3.zip)
 
-Version 1.02
+Version 1.03
 
