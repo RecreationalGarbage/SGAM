@@ -50,8 +50,8 @@ Partial Class SGAMForm
         Me.DisableWarnOnDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.AdvancedGAMModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -77,7 +77,7 @@ Partial Class SGAMForm
         'FirstPropertyBox
         '
         Me.FirstPropertyBox.FormattingEnabled = True
-        Me.FirstPropertyBox.Items.AddRange(New Object() {"Create", "Update", "Delete", "Print", "Other"})
+        Me.FirstPropertyBox.Items.AddRange(New Object() {"Create", "Update", "Delete", "Print", "Other", "Devices"})
         Me.FirstPropertyBox.Location = New System.Drawing.Point(11, 61)
         Me.FirstPropertyBox.Name = "FirstPropertyBox"
         Me.FirstPropertyBox.Size = New System.Drawing.Size(121, 21)
@@ -201,7 +201,7 @@ Partial Class SGAMForm
         Me.versionlabel.Name = "versionlabel"
         Me.versionlabel.Size = New System.Drawing.Size(66, 13)
         Me.versionlabel.TabIndex = 18
-        Me.versionlabel.Text = "Version 1.03"
+        Me.versionlabel.Text = "Version 1.04"
         '
         'sgamMainMenuStrip
         '
@@ -303,7 +303,7 @@ Partial Class SGAMForm
         Me.MinimumSize = New System.Drawing.Size(427, 259)
         Me.Name = "SGAMForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "SGAM"
+        Me.Text = "SGAM Advanced"
         Me.sgamMainMenuStrip.ResumeLayout(False)
         Me.sgamMainMenuStrip.PerformLayout()
         Me.ResumeLayout(False)

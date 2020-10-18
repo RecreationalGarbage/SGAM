@@ -12,6 +12,8 @@ Public Class SGAMForm
     Dim Box1Text As String = "" 'Declare the property box selection as a string
     Dim Box2Text As String = ""
     Dim OutputFile As String = ""
+    Dim errorfile As String = quote + "C:\Program Files (x86)\SGAM\sgam.err" + quote
+    Dim errorhandler As String = " redirect stderr " + errorfile + " multiprocess"
 
     <DllImportAttribute("kernel32.dll", EntryPoint:="WritePrivateProfileStringW")>
     Private Shared Function WritePrivateProfileStringW(<InAttribute(), MarshalAs(UnmanagedType.LPWStr)> ByVal lpSecName As String, <InAttribute(), MarshalAs(UnmanagedType.LPWStr)> ByVal lpKeyName As String, <InAttribute(), MarshalAs(UnmanagedType.LPWStr)> ByVal lpString As String, <InAttribute(), MarshalAs(UnmanagedType.LPWStr)> ByVal lpFileName As String) As <MarshalAs(UnmanagedType.Bool)> Boolean
@@ -83,9 +85,9 @@ Public Class SGAMForm
 
         '********This code should be cleaned up***********
         If customExist = ("") Then 'Checks to see if there is a custom command
-            FinalGamString = (quote + GamPath + quote + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
         Else
-            FinalGamString = (quote + GamPath + quote + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
         End If
         If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
             FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
@@ -272,6 +274,10 @@ Public Class SGAMForm
                 argumentBox.Items.Add("Print Members of Specific Groups") 'Lists all members of a given group(s)
                 argumentBox.Items.Add("Print Specific Users Group Membership") 'Lists every group a specified user is part of
                 argumentBox.Items.Add("Print Information for specific OUs") 'Lists all information for specific OUs
+            Case "Devices"
+                csvCheckBox.Checked = False
+                csvCheckBox.Visible = False
+                SecondPropertyBox.Enabled = True
             Case Else
                 csvCheckBox.Checked = False
                 csvCheckBox.Visible = False
@@ -315,9 +321,9 @@ Public Class SGAMForm
         End Select
 
         If customExist = ("") Then
-            FinalGamString = (quote + GamPath + quote + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
         Else
-            FinalGamString = (quote + GamPath + quote + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
         End If
 
         If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
