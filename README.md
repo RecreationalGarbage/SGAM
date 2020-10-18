@@ -1,5 +1,5 @@
-# SGAM
-Very basic GUI for GAM that allows manipulation of users, groups, and ous. Runs on windows 7/10, needs .net 4.5.
+# SGAM Advanced
+Very basic GUI for GAM advanced that allows manipulation of users, groups, ous, and devices. Runs on windows 7/10, needs .net 4.5, and a current installation of GAMADV-XTD3.
 
 Needs to be run on administrator account.
 
