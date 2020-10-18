@@ -7,4 +7,4 @@ Needs to be run on administrator account.
 
 Version 1.03
 
-If you have advgam installed, you should use [SGAM Advanced](https://github.com/RecreationalGarbage/SGAM/tree/advanced) instead,
+If you have [GAMADV-XTD3](https://github.com/taers232c/GAMADV-XTD3)installed, you should use [SGAM Advanced](https://github.com/RecreationalGarbage/SGAM/tree/advanced) instead.
