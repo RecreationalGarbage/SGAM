@@ -477,9 +477,11 @@ Public Class SGAMForm
         Dim NoDelCsvPath As String = "Keepcsv"
         Dim clearcsv As String = SGAMINI.IniReadValue(SectionName, NoDelCsvPath)
         Dim NoAdminCheck As String = "Noadmincheck"
+        Dim Advgam As String = "Advgam"
         Dim admchk As String = SGAMINI.IniReadValue(SectionName, NoAdminCheck)
         Dim valuedel As String = SGAMINI.IniReadValue(SectionName, nodelwarnstring)
         Dim valuetxt As String = SGAMINI.IniReadValue(SectionName, noupdatecheckstring)
+        Dim advgamini As String = SGAMINI.IniReadValue(SectionName, Advgam)
 
         If noadm = "" Then
             AdvancedOptionsToolStripMenuItem.HideDropDown()
@@ -510,5 +512,28 @@ Public Class SGAMForm
         ElseIf admchk = "1" Then
             ToggleStartupCheckForAdminToolStripMenuItem.Checked = True
         End If
+
+        If advgamini = "" Then
+            AdvancedGAMModeToolStripMenuItem.Checked = False
+        ElseIf advgamini = "1" Then
+            AdvancedGAMModeToolStripMenuItem.Checked = True
+        End If
+
     End Sub
+    Private Sub AdvancedGAMModeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdvancedGAMModeToolStripMenuItem.Click
+        Dim SectionName As String = "GAM Path"
+        Dim advgam As String = "Advgam"
+        Dim advgamini As String = SGAMINI.IniReadValue(SectionName, advgam)
+
+        If advgamini = "" Then
+            FirstPropertyBox.Items.Add(“Devices”)
+            advgamini = "1"
+        ElseIf advgamini = "1" Then
+            FirstPropertyBox.Items.Remove(“Devices”)
+            advgamini = ""
+        End If
+
+        WritePrivateProfileStringW(SectionName, advgam, advgamini, iniPath)
+    End Sub
+
 End Class

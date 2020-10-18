@@ -51,6 +51,7 @@ Partial Class SGAMForm
         Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.AdvancedGAMModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -239,7 +240,7 @@ Partial Class SGAMForm
         '
         'AdvancedOptionsToolStripMenuItem
         '
-        Me.AdvancedOptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DisableNoupdateCheckToolStripMenuItem, Me.DisableWarnOnDeleteToolStripMenuItem, Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem, Me.ToggleStartupCheckForAdminToolStripMenuItem})
+        Me.AdvancedOptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DisableNoupdateCheckToolStripMenuItem, Me.DisableWarnOnDeleteToolStripMenuItem, Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem, Me.ToggleStartupCheckForAdminToolStripMenuItem, Me.AdvancedGAMModeToolStripMenuItem})
         Me.AdvancedOptionsToolStripMenuItem.Name = "AdvancedOptionsToolStripMenuItem"
         Me.AdvancedOptionsToolStripMenuItem.Size = New System.Drawing.Size(117, 20)
         Me.AdvancedOptionsToolStripMenuItem.Text = "Advanced Options"
@@ -267,6 +268,12 @@ Partial Class SGAMForm
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Name = "ToggleStartupCheckForAdminToolStripMenuItem"
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Text = "Disable startup check for admin"
+        '
+        'AdvancedGAMModeToolStripMenuItem
+        '
+        Me.AdvancedGAMModeToolStripMenuItem.Name = "AdvancedGAMModeToolStripMenuItem"
+        Me.AdvancedGAMModeToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
+        Me.AdvancedGAMModeToolStripMenuItem.Text = "Advanced GAM mode"
         '
         'SGAMForm
         '
@@ -330,4 +337,5 @@ Partial Class SGAMForm
     Friend WithEvents DisableWarnOnDeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToggleClearCsvPathAfterExecuteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToggleStartupCheckForAdminToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AdvancedGAMModeToolStripMenuItem As ToolStripMenuItem
 End Class
