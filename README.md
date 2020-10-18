@@ -3,9 +3,8 @@ Very basic GUI for GAM that allows manipulation of users, groups, and ous. Runs 
 
 Needs to be run on administrator account.
 
-Poorly written in .net, but you can't beat the price.
-
 [Download Latest](https://github.com/RecreationalGarbage/SGAM/releases/download/1.03/SGAM_1_0_3.zip)
 
 Version 1.03
 
+If you have advgam installed, you should use [SGAM Advanced](https://github.com/RecreationalGarbage/SGAM/tree/advanced) instead,
