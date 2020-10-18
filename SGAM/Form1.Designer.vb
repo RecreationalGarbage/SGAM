@@ -50,7 +50,6 @@ Partial Class SGAMForm
         Me.DisableWarnOnDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdvancedGAMModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -77,7 +76,7 @@ Partial Class SGAMForm
         'FirstPropertyBox
         '
         Me.FirstPropertyBox.FormattingEnabled = True
-        Me.FirstPropertyBox.Items.AddRange(New Object() {"Create", "Update", "Delete", "Print", "Other", "Devices"})
+        Me.FirstPropertyBox.Items.AddRange(New Object() {"Create", "Update", "Delete", "Print", "Other"})
         Me.FirstPropertyBox.Location = New System.Drawing.Point(11, 61)
         Me.FirstPropertyBox.Name = "FirstPropertyBox"
         Me.FirstPropertyBox.Size = New System.Drawing.Size(121, 21)
@@ -87,7 +86,7 @@ Partial Class SGAMForm
         'SecondPropertyBox
         '
         Me.SecondPropertyBox.FormattingEnabled = True
-        Me.SecondPropertyBox.Items.AddRange(New Object() {"User", "Group", "OU"})
+        Me.SecondPropertyBox.Items.AddRange(New Object() {"User", "Group", "OU", "Device OU"})
         Me.SecondPropertyBox.Location = New System.Drawing.Point(11, 88)
         Me.SecondPropertyBox.Name = "SecondPropertyBox"
         Me.SecondPropertyBox.Size = New System.Drawing.Size(121, 21)
@@ -240,7 +239,7 @@ Partial Class SGAMForm
         '
         'AdvancedOptionsToolStripMenuItem
         '
-        Me.AdvancedOptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DisableNoupdateCheckToolStripMenuItem, Me.DisableWarnOnDeleteToolStripMenuItem, Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem, Me.ToggleStartupCheckForAdminToolStripMenuItem, Me.AdvancedGAMModeToolStripMenuItem})
+        Me.AdvancedOptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DisableNoupdateCheckToolStripMenuItem, Me.DisableWarnOnDeleteToolStripMenuItem, Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem, Me.ToggleStartupCheckForAdminToolStripMenuItem})
         Me.AdvancedOptionsToolStripMenuItem.Name = "AdvancedOptionsToolStripMenuItem"
         Me.AdvancedOptionsToolStripMenuItem.Size = New System.Drawing.Size(117, 20)
         Me.AdvancedOptionsToolStripMenuItem.Text = "Advanced Options"
@@ -268,12 +267,6 @@ Partial Class SGAMForm
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Name = "ToggleStartupCheckForAdminToolStripMenuItem"
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Text = "Disable startup check for admin"
-        '
-        'AdvancedGAMModeToolStripMenuItem
-        '
-        Me.AdvancedGAMModeToolStripMenuItem.Name = "AdvancedGAMModeToolStripMenuItem"
-        Me.AdvancedGAMModeToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
-        Me.AdvancedGAMModeToolStripMenuItem.Text = "Advanced GAM mode"
         '
         'SGAMForm
         '
@@ -337,5 +330,4 @@ Partial Class SGAMForm
     Friend WithEvents DisableWarnOnDeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToggleClearCsvPathAfterExecuteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToggleStartupCheckForAdminToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AdvancedGAMModeToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -212,6 +212,13 @@ Public Class SGAMForm
                 argumentBox.Items.Add(" description ~description") 'Description of the OU
                 argumentBox.Items.Add(" add users ~user")
                 argumentBox.Items.Add(" noinherit") 'Does not inherit defaults from parent OU
+            Case "Device OU"
+                argumentBox.Items.Clear()
+                argumentBox.SelectionMode = SelectionMode.None
+                argumentBox.Items.Add("serial")
+                argumentBox.Items.Add("ou")
+                argumentLabel.AppendText(" cros query " + quote + "id:~~serial~~" + quote + " ou ~ou")
+                MessageBox.Show("Do not click the item selection box on the right, just add the serial and ou to the .csv file")
             Case Else
                 argumentBox.Items.Clear()
                 argumentBox.SelectionMode = SelectionMode.MultiExtended
@@ -274,10 +281,6 @@ Public Class SGAMForm
                 argumentBox.Items.Add("Print Members of Specific Groups") 'Lists all members of a given group(s)
                 argumentBox.Items.Add("Print Specific Users Group Membership") 'Lists every group a specified user is part of
                 argumentBox.Items.Add("Print Information for specific OUs") 'Lists all information for specific OUs
-            Case "Devices"
-                csvCheckBox.Checked = False
-                csvCheckBox.Visible = False
-                SecondPropertyBox.Enabled = True
             Case Else
                 csvCheckBox.Checked = False
                 csvCheckBox.Visible = False
@@ -519,27 +522,6 @@ Public Class SGAMForm
             ToggleStartupCheckForAdminToolStripMenuItem.Checked = True
         End If
 
-        If advgamini = "" Then
-            AdvancedGAMModeToolStripMenuItem.Checked = False
-        ElseIf advgamini = "1" Then
-            AdvancedGAMModeToolStripMenuItem.Checked = True
-        End If
-
-    End Sub
-    Private Sub AdvancedGAMModeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdvancedGAMModeToolStripMenuItem.Click
-        Dim SectionName As String = "GAM Path"
-        Dim advgam As String = "Advgam"
-        Dim advgamini As String = SGAMINI.IniReadValue(SectionName, advgam)
-
-        If advgamini = "" Then
-            FirstPropertyBox.Items.Add(“Devices”)
-            advgamini = "1"
-        ElseIf advgamini = "1" Then
-            FirstPropertyBox.Items.Remove(“Devices”)
-            advgamini = ""
-        End If
-
-        WritePrivateProfileStringW(SectionName, advgam, advgamini, iniPath)
     End Sub
 
 End Class
