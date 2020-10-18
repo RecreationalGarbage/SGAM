@@ -244,7 +244,7 @@ Public Class SGAMForm
                 Dim nodelwarnstring As String = "NoDelWarn"
                 Dim valuedel As String = SGAMINI.IniReadValue(SectionName, nodelwarnstring)
                 If valuedel = "" Then
-                    MessageBox.Show("Make sure empty cells are populated with # in your .csv file!", "Warning, check readme")
+                    MessageBox.Show("Be careful with this, double check your .csv and command")
                 ElseIf valuedel = "1" Then
                 End If
                 csvCheckBox.Checked = False
@@ -475,11 +475,13 @@ Public Class SGAMForm
         Dim noupdatecheckstring As String = "Updatetxt"
         Dim nodelwarnstring As String = "NoDelWarn"
         Dim NoDelCsvPath As String = "Keepcsv"
+        Dim Advgam As String = "Advgam"
         Dim clearcsv As String = SGAMINI.IniReadValue(SectionName, NoDelCsvPath)
         Dim NoAdminCheck As String = "Noadmincheck"
         Dim admchk As String = SGAMINI.IniReadValue(SectionName, NoAdminCheck)
         Dim valuedel As String = SGAMINI.IniReadValue(SectionName, nodelwarnstring)
         Dim valuetxt As String = SGAMINI.IniReadValue(SectionName, noupdatecheckstring)
+        Dim advgamini As String = SGAMINI.IniReadValue(SectionName, Advgam)
 
         If noadm = "" Then
             AdvancedOptionsToolStripMenuItem.HideDropDown()
@@ -510,5 +512,33 @@ Public Class SGAMForm
         ElseIf admchk = "1" Then
             ToggleStartupCheckForAdminToolStripMenuItem.Checked = True
         End If
+
+        '###Enable for advanced gam checkbox######
+        'If advgamini = "" Then
+        'AdvancedGAMModeToolStripMenuItem.Checked = False
+        'ElseIf advgamini = "1" Then
+        'AdvancedGAMModeToolStripMenuItem.Checked = True
+        'End If
+        '###################################
+
     End Sub
+
+    '#####Enable this for advanced gam toggle######
+    'Private Sub AdvancedGAMModeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdvancedGAMModeToolStripMenuItem.Click
+    'Dim SectionName As String = "GAM Path"
+    'Dim advgam As String = "Advgam"
+    'Dim advgamini As String = SGAMINI.IniReadValue(SectionName, advgam)
+
+    'If advgamini = "" Then
+    '       FirstPropertyBox.Items.Add(“Devices”)
+    '      advgamini = "1"
+    'ElseIf advgamini = "1" Then
+    '       FirstPropertyBox.Items.Remove(“Devices”)
+    '      advgamini = ""
+    'End If
+
+    '   WritePrivateProfileStringW(SectionName, advgam, advgamini, iniPath)
+    ' End Sub
+    '#######################################
+
 End Class
