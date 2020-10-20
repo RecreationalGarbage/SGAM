@@ -3,7 +3,7 @@ Very basic GUI for GAM advanced that allows manipulation of users, groups, ous, 
 
 Currently a work in progress.
 
-[Download Latest](https://github.com/RecreationalGarbage/SGAM/releases/download/1.04/SGAM_ADV_1_0_4.zip)
+[Download Latest](https://github.com/RecreationalGarbage/SGAM/releases/download/1.05/SGAM_ADV_1_0_5.zip)
 
-Version 1.04
+Version 1.05
 
