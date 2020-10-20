@@ -12,7 +12,7 @@ Public Class SGAMForm
     Dim Box1Text As String = "" 'Declare the property box selection as a string
     Dim Box2Text As String = ""
     Dim OutputFile As String = ""
-    Dim errorfile As String = quote + "C:\Program Files (x86)\SGAM\sgam.err" + quote
+    Dim errorfile As String = quote + "C:\Program Files (x86)\SGAM\errorlog.txt" + quote
     Dim errorhandler As String = " redirect stderr " + errorfile + " multiprocess"
 
     <DllImportAttribute("kernel32.dll", EntryPoint:="WritePrivateProfileStringW")>
@@ -212,7 +212,7 @@ Public Class SGAMForm
                 argumentBox.Items.Add(" description ~description") 'Description of the OU
                 argumentBox.Items.Add(" add users ~user")
                 argumentBox.Items.Add(" noinherit") 'Does not inherit defaults from parent OU
-            Case "Device OU"
+            Case "Device OU" 'Delete this code
                 argumentBox.Items.Clear()
                 argumentBox.SelectionMode = SelectionMode.None
                 argumentBox.Items.Add("serial")
@@ -236,6 +236,11 @@ Public Class SGAMForm
         argumentBox.Items.Clear() 'Clears argument box if the first property box changes, not sure if I like it or not
         SecondPropertyBox.Text = "SELECT" 'clears second property box selection every time the first box changes
         PrintSecondPropertyBox.Text = "SELECT" 'clears print second property box selection every time the first box changes
+        argumentBox.Visible = True
+        SecondPropertyBox.Visible = True
+        DevicePropertyBox.Visible = False
+        deviceboxlabel.Visible = False
+        DevicesLabel.Visible = False
 
         Select Case Box1Text
             Case "Create"
@@ -281,12 +286,36 @@ Public Class SGAMForm
                 argumentBox.Items.Add("Print Members of Specific Groups") 'Lists all members of a given group(s)
                 argumentBox.Items.Add("Print Specific Users Group Membership") 'Lists every group a specified user is part of
                 argumentBox.Items.Add("Print Information for specific OUs") 'Lists all information for specific OUs
+            Case "Chrome Device"
+                csvCheckBox.Checked = False
+                csvCheckBox.Visible = False
+                SecondPropertyBox.Enabled = True
+                Box1Text = " gam update"
+                SecondPropertyBox.Visible = False
+                DevicePropertyBox.Visible = True
+                argumentBox.Visible = False
+                argboxcontrollabel.Visible = False
+                deviceboxlabel.Visible = True
+                DevicesLabel.Visible = True
             Case Else
                 csvCheckBox.Checked = False
                 csvCheckBox.Visible = False
                 SecondPropertyBox.Enabled = True
                 Box1Text = "Box 1 Error"
         End Select
+    End Sub
+    Private Sub DevicePropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DevicePropertyBox.SelectedIndexChanged
+        Box2Text = DevicePropertyBox.SelectedItem()
+        DevicesLabel.Items.Clear()
+
+        Select Case Box2Text
+            Case "Move Devices to OU"
+                DevicesLabel.Items.Add("serial")
+                DevicesLabel.Items.Add("ou")
+                argumentLabel.Clear()
+                argumentLabel.AppendText(" cros query " + quote + "id:~~serial~~" + quote + " ou ~ou")
+        End Select
+
     End Sub
     Private Sub customCmdButton_Click(sender As Object, e As EventArgs) Handles customCmdButton.Click
         'This button is only disabled because I dont want to put the effort in to get all the commands listed, all the code for the button is complete though
@@ -523,5 +552,4 @@ Public Class SGAMForm
         End If
 
     End Sub
-
 End Class

@@ -51,6 +51,9 @@ Partial Class SGAMForm
         Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
+        Me.DevicesLabel = New System.Windows.Forms.ListBox()
+        Me.deviceboxlabel = New System.Windows.Forms.Label()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -76,7 +79,7 @@ Partial Class SGAMForm
         'FirstPropertyBox
         '
         Me.FirstPropertyBox.FormattingEnabled = True
-        Me.FirstPropertyBox.Items.AddRange(New Object() {"Create", "Update", "Delete", "Print", "Other"})
+        Me.FirstPropertyBox.Items.AddRange(New Object() {"Create", "Update", "Delete", "Print", "Other", "Chrome Device"})
         Me.FirstPropertyBox.Location = New System.Drawing.Point(11, 61)
         Me.FirstPropertyBox.Name = "FirstPropertyBox"
         Me.FirstPropertyBox.Size = New System.Drawing.Size(121, 21)
@@ -86,7 +89,7 @@ Partial Class SGAMForm
         'SecondPropertyBox
         '
         Me.SecondPropertyBox.FormattingEnabled = True
-        Me.SecondPropertyBox.Items.AddRange(New Object() {"User", "Group", "OU", "Device OU"})
+        Me.SecondPropertyBox.Items.AddRange(New Object() {"User", "Group", "OU"})
         Me.SecondPropertyBox.Location = New System.Drawing.Point(11, 88)
         Me.SecondPropertyBox.Name = "SecondPropertyBox"
         Me.SecondPropertyBox.Size = New System.Drawing.Size(121, 21)
@@ -268,12 +271,49 @@ Partial Class SGAMForm
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Text = "Disable startup check for admin"
         '
+        'DevicePropertyBox
+        '
+        Me.DevicePropertyBox.FormattingEnabled = True
+        Me.DevicePropertyBox.Items.AddRange(New Object() {"Move Devices to OU", "Deprovision Devices"})
+        Me.DevicePropertyBox.Location = New System.Drawing.Point(11, 88)
+        Me.DevicePropertyBox.Name = "DevicePropertyBox"
+        Me.DevicePropertyBox.Size = New System.Drawing.Size(121, 21)
+        Me.DevicePropertyBox.TabIndex = 20
+        Me.DevicePropertyBox.Text = "SELECT"
+        Me.DevicePropertyBox.Visible = False
+        '
+        'DevicesLabel
+        '
+        Me.DevicesLabel.FormattingEnabled = True
+        Me.DevicesLabel.Location = New System.Drawing.Point(155, 46)
+        Me.DevicesLabel.Name = "DevicesLabel"
+        Me.DevicesLabel.SelectionMode = System.Windows.Forms.SelectionMode.None
+        Me.DevicesLabel.Size = New System.Drawing.Size(228, 108)
+        Me.DevicesLabel.TabIndex = 21
+        Me.argBoxToolTip.SetToolTip(Me.DevicesLabel, "Use ""todrive"" to send output to the GAM adminisrators google drive rather than a " &
+        "local file.")
+        Me.DevicesLabel.Visible = False
+        '
+        'deviceboxlabel
+        '
+        Me.deviceboxlabel.AutoSize = True
+        Me.deviceboxlabel.BackColor = System.Drawing.Color.Transparent
+        Me.deviceboxlabel.Location = New System.Drawing.Point(134, 32)
+        Me.deviceboxlabel.Name = "deviceboxlabel"
+        Me.deviceboxlabel.Size = New System.Drawing.Size(269, 13)
+        Me.deviceboxlabel.TabIndex = 22
+        Me.deviceboxlabel.Text = "No selection needed, just enter these values into a .csv"
+        Me.deviceboxlabel.Visible = False
+        '
         'SGAMForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(411, 220)
+        Me.Controls.Add(Me.deviceboxlabel)
+        Me.Controls.Add(Me.DevicesLabel)
+        Me.Controls.Add(Me.DevicePropertyBox)
         Me.Controls.Add(Me.versionlabel)
         Me.Controls.Add(Me.requiredlabel)
         Me.Controls.Add(Me.PrintSecondPropertyBox)
@@ -330,4 +370,7 @@ Partial Class SGAMForm
     Friend WithEvents DisableWarnOnDeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToggleClearCsvPathAfterExecuteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToggleStartupCheckForAdminToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DevicePropertyBox As ComboBox
+    Friend WithEvents DevicesLabel As ListBox
+    Friend WithEvents deviceboxlabel As Label
 End Class
