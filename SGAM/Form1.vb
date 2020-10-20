@@ -159,9 +159,6 @@ Public Class SGAMForm
         End If
 
     End Sub
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
-        Me.Close()
-    End Sub
     Private Sub csvButton_Click(sender As Object, e As EventArgs) Handles csvButton.Click
         Dim quote As String = """" 'wraps GamPath in quotes in case it contains spaces
         Dim SectionName As String = "GAM Path" 'Defines section of .ini file
@@ -175,55 +172,6 @@ Public Class SGAMForm
         Dim CsvValue As String = CSvPathCmd.FileName 'Write teh path to the csv as a string
 
         WritePrivateProfileStringW(SectionName, CSV, CsvValue, iniPath)
-
-    End Sub
-    Private Sub SecondPropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SecondPropertyBox.SelectedIndexChanged
-
-        Box2Text = SecondPropertyBox.SelectedItem()
-
-        Select Case Box2Text
-            Case "User"
-                argumentBox.Items.Clear()
-                argumentBox.SelectionMode = SelectionMode.MultiExtended
-                argumentBox.Items.Add(" user ~user") 'Email Address
-                argumentBox.Items.Add(" password ~password") 'Password
-                argumentBox.Items.Add(" firstname ~firstname") 'First Name
-                argumentBox.Items.Add(" lastname ~lastname") 'Last Name
-                argumentBox.Items.Add(" ou ~ou") 'OU
-                argumentBox.Items.Add(" group ~groupemail") 'Group (email address)
-                argumentBox.Items.Add(" changepassword ~changepw") 'change user password on next login, set to either on or off
-                argumentBox.Items.Add(" gal ~usergal") 'Show in global address list, either on or off
-                argumentBox.Items.Add(" suspended ~suspended") 'If user is suspended or not, on or off
-            Case "Group"
-                argumentBox.Items.Clear()
-                argumentBox.SelectionMode = SelectionMode.MultiExtended
-                argumentBox.Items.Add(" group ~groupemail") 'Group (email address)
-                argumentBox.Items.Add(" name ~groupname") 'Display name of group
-                argumentBox.Items.Add(" description ~description")
-                argumentBox.Items.Add(" show_in_group_directory ~showgroup") 'List in Gsuite group directory, true or false
-                argumentBox.Items.Add(" include_in_global_address_list ~showglobal") 'List in global search catalog, true or false
-                argumentBox.Items.Add(" add member user ~user") 'Add user to group by email address
-                argumentBox.Items.Add(" email ~newgroupemail") 'Used with update, sets new group email
-                argumentBox.Items.Add(" remove user ~user")
-            Case "OU"
-                argumentBox.Items.Clear()
-                argumentBox.SelectionMode = SelectionMode.MultiExtended
-                argumentBox.Items.Add(" org ~ou") 'OU
-                argumentBox.Items.Add(" description ~description") 'Description of the OU
-                argumentBox.Items.Add(" add users ~user")
-                argumentBox.Items.Add(" noinherit") 'Does not inherit defaults from parent OU
-            Case "Device OU" 'Delete this code
-                argumentBox.Items.Clear()
-                argumentBox.SelectionMode = SelectionMode.None
-                argumentBox.Items.Add("serial")
-                argumentBox.Items.Add("ou")
-                argumentLabel.AppendText(" cros query " + quote + "id:~~serial~~" + quote + " ou ~ou")
-                MessageBox.Show("Do not click the item selection box on the right, just add the serial and ou to the .csv file")
-            Case Else
-                argumentBox.Items.Clear()
-                argumentBox.SelectionMode = SelectionMode.MultiExtended
-                Box2Text = "Box 2 Error"
-        End Select
 
     End Sub
     Private Sub FirstPropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FirstPropertyBox.SelectedIndexChanged
@@ -304,6 +252,47 @@ Public Class SGAMForm
                 Box1Text = "Box 1 Error"
         End Select
     End Sub
+    Private Sub SecondPropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SecondPropertyBox.SelectedIndexChanged
+
+        Box2Text = SecondPropertyBox.SelectedItem()
+
+        Select Case Box2Text
+            Case "User"
+                argumentBox.Items.Clear()
+                argumentBox.SelectionMode = SelectionMode.MultiExtended
+                argumentBox.Items.Add(" user ~user") 'Email Address
+                argumentBox.Items.Add(" password ~password") 'Password
+                argumentBox.Items.Add(" firstname ~firstname") 'First Name
+                argumentBox.Items.Add(" lastname ~lastname") 'Last Name
+                argumentBox.Items.Add(" ou ~ou") 'OU
+                argumentBox.Items.Add(" group ~groupemail") 'Group (email address)
+                argumentBox.Items.Add(" changepassword ~changepw") 'change user password on next login, set to either on or off
+                argumentBox.Items.Add(" gal ~usergal") 'Show in global address list, either on or off
+                argumentBox.Items.Add(" suspended ~suspended") 'If user is suspended or not, on or off
+            Case "Group"
+                argumentBox.Items.Clear()
+                argumentBox.SelectionMode = SelectionMode.MultiExtended
+                argumentBox.Items.Add(" group ~groupemail") 'Group (email address)
+                argumentBox.Items.Add(" name ~groupname") 'Display name of group
+                argumentBox.Items.Add(" description ~description")
+                argumentBox.Items.Add(" show_in_group_directory ~showgroup") 'List in Gsuite group directory, true or false
+                argumentBox.Items.Add(" include_in_global_address_list ~showglobal") 'List in global search catalog, true or false
+                argumentBox.Items.Add(" add member user ~user") 'Add user to group by email address
+                argumentBox.Items.Add(" email ~newgroupemail") 'Used with update, sets new group email
+                argumentBox.Items.Add(" remove user ~user")
+            Case "OU"
+                argumentBox.Items.Clear()
+                argumentBox.SelectionMode = SelectionMode.MultiExtended
+                argumentBox.Items.Add(" org ~ou") 'OU
+                argumentBox.Items.Add(" description ~description") 'Description of the OU
+                argumentBox.Items.Add(" add users ~user")
+                argumentBox.Items.Add(" noinherit") 'Does not inherit defaults from parent OU
+            Case Else
+                argumentBox.Items.Clear()
+                argumentBox.SelectionMode = SelectionMode.MultiExtended
+                Box2Text = "Box 2 Error"
+        End Select
+    End Sub
     Private Sub DevicePropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DevicePropertyBox.SelectedIndexChanged
         Box2Text = DevicePropertyBox.SelectedItem()
         DevicesLabel.Items.Clear()
@@ -318,68 +307,6 @@ Public Class SGAMForm
                 DevicesLabel.Items.Add("serial")
                 argumentLabel.AppendText(" cros query:id:~~serial~~ action deprovision_same_model_replace acknowledge_device_touch_requirement")
         End Select
-
-    End Sub
-    Private Sub customCmdButton_Click(sender As Object, e As EventArgs) Handles customCmdButton.Click
-        'This button is only disabled because I dont want to put the effort in to get all the commands listed, all the code for the button is complete though
-        Me.ShowInTaskbar = False 'otherwise, hide the main window and show the config creation one
-        Me.Opacity = 0
-        customGamCommand.ShowDialog()
-
-    End Sub
-    Private Sub viewButton_Click(sender As Object, e As EventArgs) Handles viewButton.Click 'Mirror with the cmdautomate thread, minus processing functions
-        Dim SectionName As String = "GAM Path" 'Defines section of .ini file
-        Dim GamIniKey As String = "Directory" 'Defines key in .ini file
-        Dim CSVIniKey As String = "CSV" 'Defines key in .ini file
-        Dim CString As String = "CustomString"
-        Dim GamPath As String = SGAMINI.IniReadValue(SectionName, GamIniKey) 'Save the inireadvalue output into a usable string
-        Dim CsvPath As String = SGAMINI.IniReadValue(SectionName, CSVIniKey) 'Save the inireadvalue output into a usable string
-        Dim customExist As String = SGAMINI.IniReadValue(SectionName, CString) 'take the output from the custom command window and make it a string
-        Dim argumentLabelText As String = argumentLabel.Text 'Convert the string from the hidden textbox into text, save it as a variable
-        Dim OtherArguments As String = argumentBox.SelectedItem
-        Dim CsvValue As String = ""
-
-        'This case statment can be expanded to convert specific custom strings into commands, uses standard final string
-        Select Case OtherArguments
-            Case ("Remove specific user from all groups")
-                Box1Text = ""
-                argumentLabelText = (" gam user ~user delete groups") 'removes specified user from all groups
-            Case ("Print Members of Specific Groups")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members group ~groupemail" + OutputFile)
-            Case ("Print Specific Users Group Membership")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members member ~user" + OutputFile)
-            Case ("Print Information for specific OUs")
-                Box1Text = ("")
-                argumentLabelText = (" gam info org ~ou" + OutputFile)
-        End Select
-
-        If customExist = ("") Then
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
-        Else
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
-        End If
-
-        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
-            FinalGamString = (quote + GamPath + quote + Box1Text + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
-        End If
-
-        MessageBox.Show(FinalGamString, "Use File Menu to Copy")
-
-    End Sub
-    Private Sub csvCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles csvCheckBox.CheckedChanged
-
-        If csvCheckBox.Checked = True Then
-            outPutToFileDialog.InitialDirectory = "C:\Users\" + uName + "\Desktop" 'Controls the dialog box that opens when selecting CSV file
-            outPutToFileDialog.Title = "Select output file location, must be .csv (default)."
-            outPutToFileDialog.Filter = "|*.csv|All Files|*.*"
-            outPutToFileDialog.ShowDialog()
-            OutputFile = " > " + quote + outPutToFileDialog.FileName + quote 'Write teh path to the csv as a string
-        Else
-            OutputFile = ""
-        End If
-
     End Sub
     Private Sub PrintSecondPropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PrintSecondPropertyBox.SelectedIndexChanged
 
@@ -434,6 +361,70 @@ Public Class SGAMForm
                 argumentBox.Items.Clear()
                 argumentBox.SelectionMode = SelectionMode.MultiExtended
         End Select
+    End Sub
+    Private Sub customCmdButton_Click(sender As Object, e As EventArgs) Handles customCmdButton.Click
+        'This button is only disabled because I dont want to put the effort in to get all the commands listed, all the code for the button is complete though
+        Me.ShowInTaskbar = False 'otherwise, hide the main window and show the config creation one
+        Me.Opacity = 0
+        customGamCommand.ShowDialog()
+
+    End Sub
+    Private Sub viewButton_Click(sender As Object, e As EventArgs) Handles viewButton.Click 'Mirror with the cmdautomate thread, minus processing functions
+        Dim SectionName As String = "GAM Path" 'Defines section of .ini file
+        Dim GamIniKey As String = "Directory" 'Defines key in .ini file
+        Dim CSVIniKey As String = "CSV" 'Defines key in .ini file
+        Dim CString As String = "CustomString"
+        Dim GamPath As String = SGAMINI.IniReadValue(SectionName, GamIniKey) 'Save the inireadvalue output into a usable string
+        Dim CsvPath As String = SGAMINI.IniReadValue(SectionName, CSVIniKey) 'Save the inireadvalue output into a usable string
+        Dim customExist As String = SGAMINI.IniReadValue(SectionName, CString) 'take the output from the custom command window and make it a string
+        Dim argumentLabelText As String = argumentLabel.Text 'Convert the string from the hidden textbox into text, save it as a variable
+        Dim OtherArguments As String = argumentBox.SelectedItem
+        Dim CsvValue As String = ""
+
+        'This case statment can be expanded to convert specific custom strings into commands, uses standard final string
+        Select Case OtherArguments
+            Case ("Remove specific user from all groups")
+                Box1Text = ""
+                argumentLabelText = (" gam user ~user delete groups") 'removes specified user from all groups
+            Case ("Print Members of Specific Groups")
+                Box1Text = (" gam print")
+                argumentLabelText = (" group-members group ~groupemail" + OutputFile)
+            Case ("Print Specific Users Group Membership")
+                Box1Text = (" gam print")
+                argumentLabelText = (" group-members member ~user" + OutputFile)
+            Case ("Print Information for specific OUs")
+                Box1Text = ("")
+                argumentLabelText = (" gam info org ~ou" + OutputFile)
+        End Select
+
+        If customExist = ("") Then
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
+        Else
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
+        End If
+
+        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+            FinalGamString = (quote + GamPath + quote + Box1Text + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+        End If
+
+        MessageBox.Show(FinalGamString, "Use File Menu to Copy")
+
+    End Sub
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+    End Sub
+    Private Sub csvCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles csvCheckBox.CheckedChanged
+
+        If csvCheckBox.Checked = True Then
+            outPutToFileDialog.InitialDirectory = "C:\Users\" + uName + "\Desktop" 'Controls the dialog box that opens when selecting CSV file
+            outPutToFileDialog.Title = "Select output file location, must be .csv (default)."
+            outPutToFileDialog.Filter = "|*.csv|All Files|*.*"
+            outPutToFileDialog.ShowDialog()
+            OutputFile = " > " + quote + outPutToFileDialog.FileName + quote 'Write teh path to the csv as a string
+        Else
+            OutputFile = ""
+        End If
+
     End Sub
     Private Sub DeleteConfigFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteConfigFileToolStripMenuItem.Click
         If File.Exists(iniPath) Then 'If there is a config file, delete it
