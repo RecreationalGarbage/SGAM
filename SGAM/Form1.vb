@@ -123,6 +123,47 @@ Public Class SGAMForm
         WritePrivateProfileStringW(SectionName, CString, CStringValue, iniPath) 'Sets custom string to nothing after execute
 
     End Sub
+    Private Sub viewButton_Click(sender As Object, e As EventArgs) Handles viewButton.Click 'Mirror with the cmdautomate thread, minus processing functions
+        Dim SectionName As String = "GAM Path" 'Defines section of .ini file
+        Dim GamIniKey As String = "Directory" 'Defines key in .ini file
+        Dim CSVIniKey As String = "CSV" 'Defines key in .ini file
+        Dim CString As String = "CustomString"
+        Dim GamPath As String = SGAMINI.IniReadValue(SectionName, GamIniKey) 'Save the inireadvalue output into a usable string
+        Dim CsvPath As String = SGAMINI.IniReadValue(SectionName, CSVIniKey) 'Save the inireadvalue output into a usable string
+        Dim customExist As String = SGAMINI.IniReadValue(SectionName, CString) 'take the output from the custom command window and make it a string
+        Dim argumentLabelText As String = argumentLabel.Text 'Convert the string from the hidden textbox into text, save it as a variable
+        Dim OtherArguments As String = argumentBox.SelectedItem
+        Dim CsvValue As String = ""
+
+        'This case statment can be expanded to convert specific custom strings into commands, uses standard final string
+        Select Case OtherArguments
+            Case ("Remove specific user from all groups")
+                Box1Text = ""
+                argumentLabelText = (" gam user ~user delete groups") 'removes specified user from all groups
+            Case ("Print Members of Specific Groups")
+                Box1Text = (" gam print")
+                argumentLabelText = (" group-members group ~groupemail" + OutputFile)
+            Case ("Print Specific Users Group Membership")
+                Box1Text = (" gam print")
+                argumentLabelText = (" group-members member ~user" + OutputFile)
+            Case ("Print Information for specific OUs")
+                Box1Text = ("")
+                argumentLabelText = (" gam info org ~ou" + OutputFile)
+        End Select
+
+        If customExist = ("") Then
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
+        Else
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
+        End If
+
+        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+            FinalGamString = (quote + GamPath + quote + Box1Text + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+        End If
+
+        MessageBox.Show(FinalGamString, "Use File Menu to Copy")
+
+    End Sub
     Private Sub ExecuteBut_Click(sender As Object, e As EventArgs) Handles ExecuteBut.Click 'This starts the process created by CMDAutomate
 
         Dim SectionName As String = "GAM Path" 'Defines section of .ini file
@@ -245,6 +286,7 @@ Public Class SGAMForm
                 argboxcontrollabel.Visible = False
                 deviceboxlabel.Visible = True
                 DevicesLabel.Visible = True
+                DevicePropertyBox.Text = "SELECT"
             Case Else
                 csvCheckBox.Checked = False
                 csvCheckBox.Visible = False
@@ -306,7 +348,10 @@ Public Class SGAMForm
             Case "Deprovision Devices"
                 DevicesLabel.Items.Add("serial")
                 argumentLabel.AppendText(" cros query:id:~~serial~~ action deprovision_same_model_replace acknowledge_device_touch_requirement")
+            Case Else
+                MessageBox.Show("Device property box error.")
         End Select
+
     End Sub
     Private Sub PrintSecondPropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PrintSecondPropertyBox.SelectedIndexChanged
 
@@ -367,47 +412,6 @@ Public Class SGAMForm
         Me.ShowInTaskbar = False 'otherwise, hide the main window and show the config creation one
         Me.Opacity = 0
         customGamCommand.ShowDialog()
-
-    End Sub
-    Private Sub viewButton_Click(sender As Object, e As EventArgs) Handles viewButton.Click 'Mirror with the cmdautomate thread, minus processing functions
-        Dim SectionName As String = "GAM Path" 'Defines section of .ini file
-        Dim GamIniKey As String = "Directory" 'Defines key in .ini file
-        Dim CSVIniKey As String = "CSV" 'Defines key in .ini file
-        Dim CString As String = "CustomString"
-        Dim GamPath As String = SGAMINI.IniReadValue(SectionName, GamIniKey) 'Save the inireadvalue output into a usable string
-        Dim CsvPath As String = SGAMINI.IniReadValue(SectionName, CSVIniKey) 'Save the inireadvalue output into a usable string
-        Dim customExist As String = SGAMINI.IniReadValue(SectionName, CString) 'take the output from the custom command window and make it a string
-        Dim argumentLabelText As String = argumentLabel.Text 'Convert the string from the hidden textbox into text, save it as a variable
-        Dim OtherArguments As String = argumentBox.SelectedItem
-        Dim CsvValue As String = ""
-
-        'This case statment can be expanded to convert specific custom strings into commands, uses standard final string
-        Select Case OtherArguments
-            Case ("Remove specific user from all groups")
-                Box1Text = ""
-                argumentLabelText = (" gam user ~user delete groups") 'removes specified user from all groups
-            Case ("Print Members of Specific Groups")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members group ~groupemail" + OutputFile)
-            Case ("Print Specific Users Group Membership")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members member ~user" + OutputFile)
-            Case ("Print Information for specific OUs")
-                Box1Text = ("")
-                argumentLabelText = (" gam info org ~ou" + OutputFile)
-        End Select
-
-        If customExist = ("") Then
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
-        Else
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
-        End If
-
-        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
-            FinalGamString = (quote + GamPath + quote + Box1Text + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
-        End If
-
-        MessageBox.Show(FinalGamString, "Use File Menu to Copy")
 
     End Sub
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
