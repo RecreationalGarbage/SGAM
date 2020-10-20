@@ -203,7 +203,7 @@ Partial Class SGAMForm
         Me.versionlabel.Name = "versionlabel"
         Me.versionlabel.Size = New System.Drawing.Size(66, 13)
         Me.versionlabel.TabIndex = 18
-        Me.versionlabel.Text = "Version 1.04"
+        Me.versionlabel.Text = "Version 1.05"
         '
         'sgamMainMenuStrip
         '
