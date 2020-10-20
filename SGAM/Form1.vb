@@ -307,13 +307,16 @@ Public Class SGAMForm
     Private Sub DevicePropertyBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DevicePropertyBox.SelectedIndexChanged
         Box2Text = DevicePropertyBox.SelectedItem()
         DevicesLabel.Items.Clear()
+        argumentLabel.Clear()
 
         Select Case Box2Text
             Case "Move Devices to OU"
                 DevicesLabel.Items.Add("serial")
                 DevicesLabel.Items.Add("ou")
-                argumentLabel.Clear()
                 argumentLabel.AppendText(" cros query " + quote + "id:~~serial~~" + quote + " ou ~ou")
+            Case "Deprovision Devices"
+                DevicesLabel.Items.Add("serial")
+                argumentLabel.AppendText(" cros query:id:~~serial~~ action deprovision_same_model_replace acknowledge_device_touch_requirement")
         End Select
 
     End Sub
