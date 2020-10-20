@@ -512,33 +512,5 @@ Public Class SGAMForm
         ElseIf admchk = "1" Then
             ToggleStartupCheckForAdminToolStripMenuItem.Checked = True
         End If
-
-        '###Enable for advanced gam checkbox######
-        'If advgamini = "" Then
-        'AdvancedGAMModeToolStripMenuItem.Checked = False
-        'ElseIf advgamini = "1" Then
-        'AdvancedGAMModeToolStripMenuItem.Checked = True
-        'End If
-        '###################################
-
     End Sub
-
-    '#####Enable this for advanced gam toggle######
-    'Private Sub AdvancedGAMModeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdvancedGAMModeToolStripMenuItem.Click
-    'Dim SectionName As String = "GAM Path"
-    'Dim advgam As String = "Advgam"
-    'Dim advgamini As String = SGAMINI.IniReadValue(SectionName, advgam)
-
-    'If advgamini = "" Then
-    '       FirstPropertyBox.Items.Add(“Devices”)
-    '      advgamini = "1"
-    'ElseIf advgamini = "1" Then
-    '       FirstPropertyBox.Items.Remove(“Devices”)
-    '      advgamini = ""
-    'End If
-
-    '   WritePrivateProfileStringW(SectionName, advgam, advgamini, iniPath)
-    ' End Sub
-    '#######################################
-
 End Class
