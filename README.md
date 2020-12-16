@@ -3,5 +3,5 @@ Very basic GUI for GAM ADVXTD3 that allows manipulation of users, groups, ous, a
 
 [Download Latest](https://github.com/RecreationalGarbage/SGAM/releases/download/1.05/SGAM_ADV_1_0_5.zip)
 
-Version 1.05
+Version 1.06
 
