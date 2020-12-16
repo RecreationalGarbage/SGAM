@@ -51,8 +51,8 @@ Partial Class SGAMForm
         Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
         Me.DevicesLabel = New System.Windows.Forms.ListBox()
+        Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
         Me.deviceboxlabel = New System.Windows.Forms.Label()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -203,7 +203,7 @@ Partial Class SGAMForm
         Me.versionlabel.Name = "versionlabel"
         Me.versionlabel.Size = New System.Drawing.Size(66, 13)
         Me.versionlabel.TabIndex = 18
-        Me.versionlabel.Text = "Version 1.05"
+        Me.versionlabel.Text = "Version 1.06"
         '
         'sgamMainMenuStrip
         '
@@ -271,17 +271,6 @@ Partial Class SGAMForm
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Text = "Disable startup check for admin"
         '
-        'DevicePropertyBox
-        '
-        Me.DevicePropertyBox.FormattingEnabled = True
-        Me.DevicePropertyBox.Items.AddRange(New Object() {"Move Devices to OU", "Deprovision Devices"})
-        Me.DevicePropertyBox.Location = New System.Drawing.Point(11, 88)
-        Me.DevicePropertyBox.Name = "DevicePropertyBox"
-        Me.DevicePropertyBox.Size = New System.Drawing.Size(121, 21)
-        Me.DevicePropertyBox.TabIndex = 20
-        Me.DevicePropertyBox.Text = "SELECT"
-        Me.DevicePropertyBox.Visible = False
-        '
         'DevicesLabel
         '
         Me.DevicesLabel.FormattingEnabled = True
@@ -293,6 +282,17 @@ Partial Class SGAMForm
         Me.argBoxToolTip.SetToolTip(Me.DevicesLabel, "Use ""todrive"" to send output to the GAM adminisrators google drive rather than a " &
         "local file.")
         Me.DevicesLabel.Visible = False
+        '
+        'DevicePropertyBox
+        '
+        Me.DevicePropertyBox.FormattingEnabled = True
+        Me.DevicePropertyBox.Items.AddRange(New Object() {"Move Devices to OU", "Deprovision Devices", "Add Asset Tag"})
+        Me.DevicePropertyBox.Location = New System.Drawing.Point(11, 88)
+        Me.DevicePropertyBox.Name = "DevicePropertyBox"
+        Me.DevicePropertyBox.Size = New System.Drawing.Size(121, 21)
+        Me.DevicePropertyBox.TabIndex = 20
+        Me.DevicePropertyBox.Text = "SELECT"
+        Me.DevicePropertyBox.Visible = False
         '
         'deviceboxlabel
         '

@@ -348,6 +348,10 @@ Public Class SGAMForm
             Case "Deprovision Devices"
                 DevicesLabel.Items.Add("serial")
                 argumentLabel.AppendText(" cros query:id:~~serial~~ action deprovision_same_model_replace acknowledge_device_touch_requirement")
+            Case "Add Asset Tag"
+                DevicesLabel.Items.Add("serial")
+                DevicesLabel.Items.Add("assetid")
+                argumentLabel.AppendText(" cros query " + quote + "id:~~serial~~" + quote + " assetid ~assetid")
             Case Else
                 MessageBox.Show("Device property box error.")
         End Select
