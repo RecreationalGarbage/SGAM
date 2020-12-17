@@ -203,7 +203,7 @@ Partial Class SGAMForm
         Me.versionlabel.Name = "versionlabel"
         Me.versionlabel.Size = New System.Drawing.Size(66, 13)
         Me.versionlabel.TabIndex = 18
-        Me.versionlabel.Text = "Version 1.06"
+        Me.versionlabel.Text = "Version 1.07"
         '
         'sgamMainMenuStrip
         '
@@ -286,7 +286,7 @@ Partial Class SGAMForm
         'DevicePropertyBox
         '
         Me.DevicePropertyBox.FormattingEnabled = True
-        Me.DevicePropertyBox.Items.AddRange(New Object() {"Move Devices to OU", "Deprovision Devices", "Add Asset Tag"})
+        Me.DevicePropertyBox.Items.AddRange(New Object() {"Move Devices to OU", "Deprovision Devices", "Add Asset Tag", "Remote Powerwash"})
         Me.DevicePropertyBox.Location = New System.Drawing.Point(11, 88)
         Me.DevicePropertyBox.Name = "DevicePropertyBox"
         Me.DevicePropertyBox.Size = New System.Drawing.Size(121, 21)

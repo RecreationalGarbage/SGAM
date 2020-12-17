@@ -339,6 +339,7 @@ Public Class SGAMForm
         Box2Text = DevicePropertyBox.SelectedItem()
         DevicesLabel.Items.Clear()
         argumentLabel.Clear()
+        Box1Text = " gam update"
 
         Select Case Box2Text
             Case "Move Devices to OU"
@@ -352,6 +353,10 @@ Public Class SGAMForm
                 DevicesLabel.Items.Add("serial")
                 DevicesLabel.Items.Add("assetid")
                 argumentLabel.AppendText(" cros query " + quote + "id:~~serial~~" + quote + " assetid ~assetid")
+            Case "Remote Powerwash"
+                Box1Text = " gam"
+                DevicesLabel.Items.Add("serial")
+                argumentLabel.AppendText(" issuecommand cros query " + quote + "id:~~serial~~" + quote + " command remote_powerwash doit")
             Case Else
                 MessageBox.Show("Device property box error.")
         End Select
