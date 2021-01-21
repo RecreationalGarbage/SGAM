@@ -65,6 +65,7 @@ Public Class SGAMForm
         Dim NoDelCsvPath As String = "Keepcsv" 'The specific key in the ini file that has the value for admin priv check
         Dim valuedel As String = SGAMINI.IniReadValue(SectionName, NoDelCsvPath) 'Checks the valudel string, blank means delete path to .csv file after execute, 1 is dont
         Dim CStringValue As String = ""
+        Dim quickerror As String = " redirect stderr " + errorfile
 
         'This case statment can be expanded to convert specific custom strings of text into commands, add matching string to "other" case of FirstPropertyBox
         Select Case OtherArguments
@@ -83,12 +84,20 @@ Public Class SGAMForm
             Case Else
         End Select
 
+        Select Case Box1Text
+            Case " print"
+                FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+            Case "quickuser"
+                FinalGamString = (quote + GamPath + quote + errorhandler + " create" + argumentLabelText) 'Final complete string prepared to be executed by cmd
+            Case Else
+                FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        End Select
         '********This code should be cleaned up***********
-        If Box1Text IsNot " print" Then
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
-        ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
-            FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
-        End If
+        'If Box1Text IsNot " print" Then
+        'FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        'ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+        'FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+        'End If
         '/********This code should be cleaned up***********
 
         Dim myprocess As New Process
@@ -148,11 +157,20 @@ Public Class SGAMForm
                 argumentLabelText = (" gam info org ~ou" + OutputFile)
         End Select
 
-        If Box1Text IsNot " print" Then
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
-        ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
-            FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
-        End If
+        Select Case Box1Text
+            Case " print"
+                FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+            Case "quickuser"
+                FinalGamString = (quote + GamPath + quote + errorhandler + " create" + argumentLabelText) 'Final complete string prepared to be executed by cmd
+            Case Else
+                FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        End Select
+
+        'If Box1Text IsNot " print" Then
+        'FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        'ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+        'FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+        'End If
 
         MessageBox.Show(FinalGamString, "Use File Menu to Copy")
 
@@ -185,12 +203,24 @@ Public Class SGAMForm
 
         '*****/Code above here is experimental, might not be needed*****
 
-        If CsvPath = "" Then
-            MessageBox.Show("Please select a .csv file.")
-        Else
-            Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
-            GAMThread.Start() 'Execute the gam process when button is clicked
+        If CsvPath = "" Then 'For quick commands which do not require a .csv
+            Select Case Box1Text
+                Case "quickuser"
+                Case Else
+                    MessageBox.Show("Please select a .csv file.")
+                    Return
+            End Select
         End If
+
+        Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
+        GAMThread.Start() 'Execute the gam process when button is clicked
+
+        'If CsvPath = "" And Box1Text IsNot "quickuser" Then 'Please address this nonsense ASAP
+        'MessageBox.Show("Please select a .csv file.")
+        'Else
+        'Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
+        'GAMThread.Start() 'Execute the gam process when button is clicked
+        'End If
 
     End Sub
     Private Sub csvButton_Click(sender As Object, e As EventArgs) Handles csvButton.Click
@@ -664,4 +694,20 @@ Public Class SGAMForm
             End While
         End Using
     End Sub
+    Private Sub MakeUserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MakeUserToolStripMenuItem.Click
+
+        Box1Text = "quickuser"
+
+        quickuserform.ShowDialog()
+        Dim customuser As String = quickuserform.userbox.Text
+        Dim custompassword As String = quickuserform.passbox.Text
+        Dim customou As String = quickuserform.oubox.Text
+        Dim customfirst As String = quickuserform.firstnamebox.Text
+        Dim customlast As String = quickuserform.lastnamebox.Text
+
+        quickuserform.Close()
+        argumentLabel.Clear()
+        argumentLabel.AppendText(" user " + customuser + " password " + custompassword + " firstname " + customfirst + " lastname " + customlast + " ou " + customou)
+    End Sub
+
 End Class

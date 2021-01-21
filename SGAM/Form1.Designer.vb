@@ -60,6 +60,8 @@ Partial Class SGAMForm
         Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
         Me.deviceboxlabel = New System.Windows.Forms.Label()
         Me.saveDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.QuickCommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MakeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -282,7 +284,7 @@ Partial Class SGAMForm
         '
         'UtilitiesToolStripMenuItem
         '
-        Me.UtilitiesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUsernameToolStripMenuItem, Me.MakePasswordToolStripMenuItem})
+        Me.UtilitiesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUsernameToolStripMenuItem, Me.MakePasswordToolStripMenuItem, Me.QuickCommandToolStripMenuItem})
         Me.UtilitiesToolStripMenuItem.Name = "UtilitiesToolStripMenuItem"
         Me.UtilitiesToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.UtilitiesToolStripMenuItem.Text = "Utilities"
@@ -297,7 +299,7 @@ Partial Class SGAMForm
         'HawkToolStripMenuItem
         '
         Me.HawkToolStripMenuItem.Name = "HawkToolStripMenuItem"
-        Me.HawkToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.HawkToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.HawkToolStripMenuItem.Text = "Hawk Style"
         '
         'MakePasswordToolStripMenuItem
@@ -310,7 +312,7 @@ Partial Class SGAMForm
         'HawkToolStripMenuItem1
         '
         Me.HawkToolStripMenuItem1.Name = "HawkToolStripMenuItem1"
-        Me.HawkToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.HawkToolStripMenuItem1.Size = New System.Drawing.Size(132, 22)
         Me.HawkToolStripMenuItem1.Text = "Hawk Style"
         '
         'DevicesLabel
@@ -346,6 +348,19 @@ Partial Class SGAMForm
         Me.deviceboxlabel.TabIndex = 22
         Me.deviceboxlabel.Text = "No selection needed, just enter these values into a .csv"
         Me.deviceboxlabel.Visible = False
+        '
+        'QuickCommandToolStripMenuItem
+        '
+        Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem})
+        Me.QuickCommandToolStripMenuItem.Name = "QuickCommandToolStripMenuItem"
+        Me.QuickCommandToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.QuickCommandToolStripMenuItem.Text = "Quick Command"
+        '
+        'MakeUserToolStripMenuItem
+        '
+        Me.MakeUserToolStripMenuItem.Name = "MakeUserToolStripMenuItem"
+        Me.MakeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MakeUserToolStripMenuItem.Text = "Make User"
         '
         'SGAMForm
         '
@@ -421,4 +436,6 @@ Partial Class SGAMForm
     Friend WithEvents MakePasswordToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HawkToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents saveDialog As SaveFileDialog
+    Friend WithEvents QuickCommandToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MakeUserToolStripMenuItem As ToolStripMenuItem
 End Class
