@@ -201,6 +201,7 @@ Public Class SGAMForm
         CSvPathCmd.InitialDirectory = "C:\" 'Controls the dialog box that opens when selecting CSV file
         CSvPathCmd.Title = "Locate your CSV File"
         CSvPathCmd.Filter = "csv.csv|*.csv|All Files|*.*"
+        CSvPathCmd.FileName = ""
         CSvPathCmd.ShowDialog()
 
         Dim CsvValue As String = CSvPathCmd.FileName 'Write teh path to the csv as a string
@@ -411,6 +412,7 @@ Public Class SGAMForm
     End Sub
     Private Sub customCmdButton_Click(sender As Object, e As EventArgs) Handles customCmdButton.Click
         'This button is only disabled because I dont want to put the effort in to get all the commands listed, all the code for the button is complete though
+        '1/21/21 - I cleaned up code a bit, removed the main part of the code that finalizes the string, can be re-added from SGAM 1.03
         Me.ShowInTaskbar = False 'otherwise, hide the main window and show the config creation one
         Me.Opacity = 0
         customGamCommand.ShowDialog()
@@ -552,9 +554,8 @@ Public Class SGAMForm
         End If
 
     End Sub
-
-    Private Sub StudentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StudentToolStripMenuItem.Click
-        'Hawk Style
+    Private Sub HawkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HawkToolStripMenuItem.Click
+        'Hawk Style - Create student username
         Dim FinalName As String
         Dim SplitName As String()
 
@@ -562,7 +563,8 @@ Public Class SGAMForm
         MsgBox("Please select your source text file.")
         CSvPathCmd.InitialDirectory = "C:\"
         CSvPathCmd.Title = "Locate your text File"
-        CSvPathCmd.Filter = "txt.txt|*.txt|All Files|*.*"
+        CSvPathCmd.Filter = "input.txt|*.txt|All Files|*.*"
+        CSvPathCmd.FileName = ""
         CSvPathCmd.ShowDialog()
 
         Dim txtpath As String = CSvPathCmd.FileName 'path to text file
@@ -571,7 +573,7 @@ Public Class SGAMForm
         MsgBox("Please select the location for the output text file.")
         saveDialog.InitialDirectory = "C:\"
         saveDialog.Title = "Where to save file?"
-        saveDialog.Filter = "txt.txt|*.txt|All Files|*.*"
+        saveDialog.Filter = "output.txt|*.txt|All Files|*.*"
         saveDialog.ShowDialog()
 
         Dim savepath As String = saveDialog.FileName
@@ -593,7 +595,6 @@ Public Class SGAMForm
                     ThisLine = SGAMParser.ReadFields()
                     Dim RawData As String
                     For Each RawData In ThisLine
-
                         SplitName = RawData.Split(" ")
 
                         FinalName = yog + SplitName(0) & SplitName(1).Substring(0, 1) + suffix
@@ -608,6 +609,59 @@ Public Class SGAMForm
                 End Try
             End While
         End Using
+    End Sub
 
+    Private Sub HawkToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles HawkToolStripMenuItem1.Click
+        'Hawk Style - Create student password
+        Dim FinalPass As String
+
+        'Select text file with data in it
+        MsgBox("Please select your source text file.")
+        CSvPathCmd.InitialDirectory = "C:\"
+        CSvPathCmd.Title = "Locate your text File"
+        CSvPathCmd.Filter = "input.txt|*.txt|All Files|*.*"
+        CSvPathCmd.FileName = ""
+        CSvPathCmd.ShowDialog()
+
+        Dim txtpath As String = CSvPathCmd.FileName 'path to text file
+
+        'Select output file for created names
+        MsgBox("Please select the location for the output text file.")
+        saveDialog.InitialDirectory = "C:\"
+        saveDialog.Title = "Where to save file?"
+        saveDialog.Filter = "output.txt|*.txt|All Files|*.*"
+        saveDialog.ShowDialog()
+
+        Dim savepath As String = saveDialog.FileName
+
+        'Opens form to choose YOG prefix and email suffix
+        passform.ShowDialog()
+        Dim prefix As String = passform.passbox.Text
+        passform.Close()
+
+        'Reads data from text file
+        Using SGAMParser As New Microsoft.VisualBasic.FileIO.TextFieldParser(txtpath)
+            SGAMParser.TextFieldType = FileIO.FieldType.Delimited
+            SGAMParser.SetDelimiters(",")
+
+            Dim ThisLine As String()
+            While Not SGAMParser.EndOfData
+                Try
+                    ThisLine = SGAMParser.ReadFields()
+                    Dim RawData As String
+                    For Each RawData In ThisLine
+
+                        FinalPass = prefix + RawData
+
+                        Dim outputFile As System.IO.StreamWriter
+                        outputFile = My.Computer.FileSystem.OpenTextFileWriter(savepath, True)
+                        outputFile.WriteLine(FinalPass)
+                        outputFile.Close()
+                    Next
+                Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
+                    MsgBox("Line " & ex.Message & "is improperly formatted.")
+                End Try
+            End While
+        End Using
     End Sub
 End Class

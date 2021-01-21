@@ -52,12 +52,9 @@ Partial Class SGAMForm
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UtilitiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MakeUsernameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HSDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StaffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HawkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MakePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HSDToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HawkToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.DevicesLabel = New System.Windows.Forms.ListBox()
         Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
@@ -292,49 +289,29 @@ Partial Class SGAMForm
         '
         'MakeUsernameToolStripMenuItem
         '
-        Me.MakeUsernameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HSDToolStripMenuItem})
+        Me.MakeUsernameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HawkToolStripMenuItem})
         Me.MakeUsernameToolStripMenuItem.Name = "MakeUsernameToolStripMenuItem"
         Me.MakeUsernameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MakeUsernameToolStripMenuItem.Text = "Make Username"
         '
-        'HSDToolStripMenuItem
+        'HawkToolStripMenuItem
         '
-        Me.HSDToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentToolStripMenuItem, Me.StaffToolStripMenuItem})
-        Me.HSDToolStripMenuItem.Name = "HSDToolStripMenuItem"
-        Me.HSDToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.HSDToolStripMenuItem.Text = "Hawk Style"
-        '
-        'StudentToolStripMenuItem
-        '
-        Me.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem"
-        Me.StudentToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
-        Me.StudentToolStripMenuItem.Text = "Student"
-        '
-        'StaffToolStripMenuItem
-        '
-        Me.StaffToolStripMenuItem.Name = "StaffToolStripMenuItem"
-        Me.StaffToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
-        Me.StaffToolStripMenuItem.Text = "Staff"
+        Me.HawkToolStripMenuItem.Name = "HawkToolStripMenuItem"
+        Me.HawkToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.HawkToolStripMenuItem.Text = "Hawk Style"
         '
         'MakePasswordToolStripMenuItem
         '
-        Me.MakePasswordToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HSDToolStripMenuItem1})
+        Me.MakePasswordToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HawkToolStripMenuItem1})
         Me.MakePasswordToolStripMenuItem.Name = "MakePasswordToolStripMenuItem"
         Me.MakePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MakePasswordToolStripMenuItem.Text = "Make Password"
         '
-        'HSDToolStripMenuItem1
+        'HawkToolStripMenuItem1
         '
-        Me.HSDToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentToolStripMenuItem1})
-        Me.HSDToolStripMenuItem1.Name = "HSDToolStripMenuItem1"
-        Me.HSDToolStripMenuItem1.Size = New System.Drawing.Size(132, 22)
-        Me.HSDToolStripMenuItem1.Text = "Hawk Style"
-        '
-        'StudentToolStripMenuItem1
-        '
-        Me.StudentToolStripMenuItem1.Name = "StudentToolStripMenuItem1"
-        Me.StudentToolStripMenuItem1.Size = New System.Drawing.Size(115, 22)
-        Me.StudentToolStripMenuItem1.Text = "Student"
+        Me.HawkToolStripMenuItem1.Name = "HawkToolStripMenuItem1"
+        Me.HawkToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.HawkToolStripMenuItem1.Text = "Hawk Style"
         '
         'DevicesLabel
         '
@@ -440,11 +417,8 @@ Partial Class SGAMForm
     Friend WithEvents deviceboxlabel As Label
     Friend WithEvents UtilitiesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MakeUsernameToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HSDToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents StudentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents StaffToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HawkToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MakePasswordToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HSDToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents StudentToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents HawkToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents saveDialog As SaveFileDialog
 End Class
