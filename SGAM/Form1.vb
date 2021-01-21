@@ -84,12 +84,9 @@ Public Class SGAMForm
         End Select
 
         '********This code should be cleaned up***********
-        If customExist = ("") Then 'Checks to see if there is a custom command
+        If Box1Text IsNot " print" Then
             FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
-        Else
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
-        End If
-        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+        ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
             FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
         End If
         '/********This code should be cleaned up***********
@@ -151,14 +148,10 @@ Public Class SGAMForm
                 argumentLabelText = (" gam info org ~ou" + OutputFile)
         End Select
 
-        If customExist = ("") Then
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
-        Else
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
-        End If
-
-        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
-            FinalGamString = (quote + GamPath + quote + Box1Text + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+        If Box1Text IsNot " print" Then
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+            FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
         End If
 
         MessageBox.Show(FinalGamString, "Use File Menu to Copy")
@@ -246,10 +239,10 @@ Public Class SGAMForm
                 Dim SectionName As String = "GAM Path"
                 Dim nodelwarnstring As String = "NoDelWarn"
                 Dim valuedel As String = SGAMINI.IniReadValue(SectionName, nodelwarnstring)
-                If valuedel = "" Then
-                    MessageBox.Show("Make sure empty cells are populated with # in your .csv file!", "Warning, check readme")
-                ElseIf valuedel = "1" Then
-                End If
+                'If valuedel = "" Then
+                'MessageBox.Show("Make sure empty cells are populated with # in your .csv file!", "Warning, check readme")
+                'ElseIf valuedel = "1" Then
+                'End If
                 csvCheckBox.Checked = False
                 csvCheckBox.Visible = False
                 SecondPropertyBox.Enabled = True
@@ -557,6 +550,64 @@ Public Class SGAMForm
         ElseIf admchk = "1" Then
             ToggleStartupCheckForAdminToolStripMenuItem.Checked = True
         End If
+
+    End Sub
+
+    Private Sub StudentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StudentToolStripMenuItem.Click
+        'Hawk Style
+        Dim FinalName As String
+        Dim SplitName As String()
+
+        'Select text file with data in it
+        MsgBox("Please select your source text file.")
+        CSvPathCmd.InitialDirectory = "C:\"
+        CSvPathCmd.Title = "Locate your text File"
+        CSvPathCmd.Filter = "txt.txt|*.txt|All Files|*.*"
+        CSvPathCmd.ShowDialog()
+
+        Dim txtpath As String = CSvPathCmd.FileName 'path to text file
+
+        'Select output file for created names
+        MsgBox("Please select the location for the output text file.")
+        saveDialog.InitialDirectory = "C:\"
+        saveDialog.Title = "Where to save file?"
+        saveDialog.Filter = "txt.txt|*.txt|All Files|*.*"
+        saveDialog.ShowDialog()
+
+        Dim savepath As String = saveDialog.FileName
+
+        'Opens form to choose YOG prefix and email suffix
+        yogform.ShowDialog()
+        Dim yog As String = yogform.yogBox.Text
+        Dim suffix As String = yogform.suffixbox.Text
+        yogform.Close()
+
+        'Reads data from text file
+        Using SGAMParser As New Microsoft.VisualBasic.FileIO.TextFieldParser(txtpath)
+            SGAMParser.TextFieldType = FileIO.FieldType.Delimited
+            SGAMParser.SetDelimiters(",")
+
+            Dim ThisLine As String()
+            While Not SGAMParser.EndOfData
+                Try
+                    ThisLine = SGAMParser.ReadFields()
+                    Dim RawData As String
+                    For Each RawData In ThisLine
+
+                        SplitName = RawData.Split(" ")
+
+                        FinalName = yog + SplitName(0) & SplitName(1).Substring(0, 1) + suffix
+
+                        Dim outputFile As System.IO.StreamWriter
+                        outputFile = My.Computer.FileSystem.OpenTextFileWriter(savepath, True)
+                        outputFile.WriteLine(FinalName)
+                        outputFile.Close()
+                    Next
+                Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
+                    MsgBox("Line " & ex.Message & "is improperly formatted.")
+                End Try
+            End While
+        End Using
 
     End Sub
 End Class

@@ -50,10 +50,19 @@ Partial Class SGAMForm
         Me.DisableWarnOnDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleClearCsvPathAfterExecuteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UtilitiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MakeUsernameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HSDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StaffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MakePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HSDToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.DevicesLabel = New System.Windows.Forms.ListBox()
         Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
         Me.deviceboxlabel = New System.Windows.Forms.Label()
+        Me.saveDialog = New System.Windows.Forms.SaveFileDialog()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -208,10 +217,11 @@ Partial Class SGAMForm
         'sgamMainMenuStrip
         '
         Me.sgamMainMenuStrip.BackColor = System.Drawing.Color.Transparent
-        Me.sgamMainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.AdvancedOptionsToolStripMenuItem})
+        Me.sgamMainMenuStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.sgamMainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.AdvancedOptionsToolStripMenuItem, Me.UtilitiesToolStripMenuItem})
         Me.sgamMainMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.sgamMainMenuStrip.Name = "sgamMainMenuStrip"
-        Me.sgamMainMenuStrip.Size = New System.Drawing.Size(411, 24)
+        Me.sgamMainMenuStrip.Size = New System.Drawing.Size(410, 24)
         Me.sgamMainMenuStrip.TabIndex = 19
         Me.sgamMainMenuStrip.Text = "MenuStrip1"
         '
@@ -255,9 +265,11 @@ Partial Class SGAMForm
         '
         'DisableWarnOnDeleteToolStripMenuItem
         '
+        Me.DisableWarnOnDeleteToolStripMenuItem.Enabled = False
         Me.DisableWarnOnDeleteToolStripMenuItem.Name = "DisableWarnOnDeleteToolStripMenuItem"
         Me.DisableWarnOnDeleteToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.DisableWarnOnDeleteToolStripMenuItem.Text = "Disable warn on delete"
+        Me.DisableWarnOnDeleteToolStripMenuItem.Visible = False
         '
         'ToggleClearCsvPathAfterExecuteToolStripMenuItem
         '
@@ -270,6 +282,59 @@ Partial Class SGAMForm
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Name = "ToggleStartupCheckForAdminToolStripMenuItem"
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.ToggleStartupCheckForAdminToolStripMenuItem.Text = "Disable startup check for admin"
+        '
+        'UtilitiesToolStripMenuItem
+        '
+        Me.UtilitiesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUsernameToolStripMenuItem, Me.MakePasswordToolStripMenuItem})
+        Me.UtilitiesToolStripMenuItem.Name = "UtilitiesToolStripMenuItem"
+        Me.UtilitiesToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.UtilitiesToolStripMenuItem.Text = "Utilities"
+        '
+        'MakeUsernameToolStripMenuItem
+        '
+        Me.MakeUsernameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HSDToolStripMenuItem})
+        Me.MakeUsernameToolStripMenuItem.Name = "MakeUsernameToolStripMenuItem"
+        Me.MakeUsernameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MakeUsernameToolStripMenuItem.Text = "Make Username"
+        '
+        'HSDToolStripMenuItem
+        '
+        Me.HSDToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentToolStripMenuItem, Me.StaffToolStripMenuItem})
+        Me.HSDToolStripMenuItem.Name = "HSDToolStripMenuItem"
+        Me.HSDToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.HSDToolStripMenuItem.Text = "Hawk Style"
+        '
+        'StudentToolStripMenuItem
+        '
+        Me.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem"
+        Me.StudentToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.StudentToolStripMenuItem.Text = "Student"
+        '
+        'StaffToolStripMenuItem
+        '
+        Me.StaffToolStripMenuItem.Name = "StaffToolStripMenuItem"
+        Me.StaffToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.StaffToolStripMenuItem.Text = "Staff"
+        '
+        'MakePasswordToolStripMenuItem
+        '
+        Me.MakePasswordToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HSDToolStripMenuItem1})
+        Me.MakePasswordToolStripMenuItem.Name = "MakePasswordToolStripMenuItem"
+        Me.MakePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MakePasswordToolStripMenuItem.Text = "Make Password"
+        '
+        'HSDToolStripMenuItem1
+        '
+        Me.HSDToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentToolStripMenuItem1})
+        Me.HSDToolStripMenuItem1.Name = "HSDToolStripMenuItem1"
+        Me.HSDToolStripMenuItem1.Size = New System.Drawing.Size(132, 22)
+        Me.HSDToolStripMenuItem1.Text = "Hawk Style"
+        '
+        'StudentToolStripMenuItem1
+        '
+        Me.StudentToolStripMenuItem1.Name = "StudentToolStripMenuItem1"
+        Me.StudentToolStripMenuItem1.Size = New System.Drawing.Size(115, 22)
+        Me.StudentToolStripMenuItem1.Text = "Student"
         '
         'DevicesLabel
         '
@@ -310,7 +375,7 @@ Partial Class SGAMForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(411, 220)
+        Me.ClientSize = New System.Drawing.Size(410, 219)
         Me.Controls.Add(Me.deviceboxlabel)
         Me.Controls.Add(Me.DevicesLabel)
         Me.Controls.Add(Me.DevicePropertyBox)
@@ -332,8 +397,8 @@ Partial Class SGAMForm
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.sgamMainMenuStrip
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(427, 259)
-        Me.MinimumSize = New System.Drawing.Size(427, 259)
+        Me.MaximumSize = New System.Drawing.Size(426, 258)
+        Me.MinimumSize = New System.Drawing.Size(426, 258)
         Me.Name = "SGAMForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SGAM Advanced"
@@ -373,4 +438,13 @@ Partial Class SGAMForm
     Friend WithEvents DevicePropertyBox As ComboBox
     Friend WithEvents DevicesLabel As ListBox
     Friend WithEvents deviceboxlabel As Label
+    Friend WithEvents UtilitiesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MakeUsernameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HSDToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StudentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StaffToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MakePasswordToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HSDToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents StudentToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents saveDialog As SaveFileDialog
 End Class
