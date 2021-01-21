@@ -84,12 +84,9 @@ Public Class SGAMForm
         End Select
 
         '********This code should be cleaned up***********
-        If customExist = ("") Then 'Checks to see if there is a custom command
+        If Box1Text IsNot " print" Then
             FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
-        Else
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
-        End If
-        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+        ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
             FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
         End If
         '/********This code should be cleaned up***********
@@ -151,14 +148,10 @@ Public Class SGAMForm
                 argumentLabelText = (" gam info org ~ou" + OutputFile)
         End Select
 
-        If customExist = ("") Then
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Standard final string prepared to be executed by GAM
-        Else
-            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " " + customExist) 'alternate command with custom command added
-        End If
-
-        If Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
-            FinalGamString = (quote + GamPath + quote + Box1Text + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
+        If Box1Text IsNot " print" Then
+            FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
+            FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
         End If
 
         MessageBox.Show(FinalGamString, "Use File Menu to Copy")
@@ -246,10 +239,10 @@ Public Class SGAMForm
                 Dim SectionName As String = "GAM Path"
                 Dim nodelwarnstring As String = "NoDelWarn"
                 Dim valuedel As String = SGAMINI.IniReadValue(SectionName, nodelwarnstring)
-                If valuedel = "" Then
-                    MessageBox.Show("Make sure empty cells are populated with # in your .csv file!", "Warning, check readme")
-                ElseIf valuedel = "1" Then
-                End If
+                'If valuedel = "" Then
+                'MessageBox.Show("Make sure empty cells are populated with # in your .csv file!", "Warning, check readme")
+                'ElseIf valuedel = "1" Then
+                'End If
                 csvCheckBox.Checked = False
                 csvCheckBox.Visible = False
                 SecondPropertyBox.Enabled = True
