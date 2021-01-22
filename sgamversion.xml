@@ -2,6 +2,4 @@
 <item>
     <version>1.0.7.0</version>
     <url>https://github.com/RecreationalGarbage/SGAM/releases/download/1.07/SGAM_ADV_1_0_7.zip</url>
-    <changelog>https://github.com/ravibpatel/AutoUpdater.NET/releases</changelog>
-    <mandatory>false</mandatory>
 </item>
