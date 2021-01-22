@@ -44,6 +44,7 @@ Partial Class SGAMForm
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteConfigFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyCommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckForUpdatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedOptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DisableNoupdateCheckToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -55,13 +56,13 @@ Partial Class SGAMForm
         Me.HawkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MakePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HawkToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.QuickCommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MakeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.DevicesLabel = New System.Windows.Forms.ListBox()
         Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
         Me.deviceboxlabel = New System.Windows.Forms.Label()
         Me.saveDialog = New System.Windows.Forms.SaveFileDialog()
-        Me.QuickCommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MakeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -211,7 +212,7 @@ Partial Class SGAMForm
         Me.versionlabel.Name = "versionlabel"
         Me.versionlabel.Size = New System.Drawing.Size(66, 13)
         Me.versionlabel.TabIndex = 18
-        Me.versionlabel.Text = "Version 1.07"
+        Me.versionlabel.Text = "Version 1.08"
         '
         'sgamMainMenuStrip
         '
@@ -226,7 +227,7 @@ Partial Class SGAMForm
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteConfigFileToolStripMenuItem, Me.CopyCommandToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteConfigFileToolStripMenuItem, Me.CopyCommandToolStripMenuItem, Me.CheckForUpdatesToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
         Me.FileToolStripMenuItem.Text = "File Menu"
@@ -234,19 +235,25 @@ Partial Class SGAMForm
         'DeleteConfigFileToolStripMenuItem
         '
         Me.DeleteConfigFileToolStripMenuItem.Name = "DeleteConfigFileToolStripMenuItem"
-        Me.DeleteConfigFileToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.DeleteConfigFileToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.DeleteConfigFileToolStripMenuItem.Text = "Delete Config File"
         '
         'CopyCommandToolStripMenuItem
         '
         Me.CopyCommandToolStripMenuItem.Name = "CopyCommandToolStripMenuItem"
-        Me.CopyCommandToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.CopyCommandToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.CopyCommandToolStripMenuItem.Text = "Copy Command"
+        '
+        'CheckForUpdatesToolStripMenuItem
+        '
+        Me.CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
+        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.CheckForUpdatesToolStripMenuItem.Text = "Check For Updates"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'AdvancedOptionsToolStripMenuItem
@@ -293,20 +300,20 @@ Partial Class SGAMForm
         '
         Me.MakeUsernameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HawkToolStripMenuItem})
         Me.MakeUsernameToolStripMenuItem.Name = "MakeUsernameToolStripMenuItem"
-        Me.MakeUsernameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MakeUsernameToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.MakeUsernameToolStripMenuItem.Text = "Make Username"
         '
         'HawkToolStripMenuItem
         '
         Me.HawkToolStripMenuItem.Name = "HawkToolStripMenuItem"
-        Me.HawkToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.HawkToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.HawkToolStripMenuItem.Text = "Hawk Style"
         '
         'MakePasswordToolStripMenuItem
         '
         Me.MakePasswordToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HawkToolStripMenuItem1})
         Me.MakePasswordToolStripMenuItem.Name = "MakePasswordToolStripMenuItem"
-        Me.MakePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MakePasswordToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.MakePasswordToolStripMenuItem.Text = "Make Password"
         '
         'HawkToolStripMenuItem1
@@ -314,6 +321,19 @@ Partial Class SGAMForm
         Me.HawkToolStripMenuItem1.Name = "HawkToolStripMenuItem1"
         Me.HawkToolStripMenuItem1.Size = New System.Drawing.Size(132, 22)
         Me.HawkToolStripMenuItem1.Text = "Hawk Style"
+        '
+        'QuickCommandToolStripMenuItem
+        '
+        Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem})
+        Me.QuickCommandToolStripMenuItem.Name = "QuickCommandToolStripMenuItem"
+        Me.QuickCommandToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.QuickCommandToolStripMenuItem.Text = "Quick Command"
+        '
+        'MakeUserToolStripMenuItem
+        '
+        Me.MakeUserToolStripMenuItem.Name = "MakeUserToolStripMenuItem"
+        Me.MakeUserToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
+        Me.MakeUserToolStripMenuItem.Text = "Make User"
         '
         'DevicesLabel
         '
@@ -349,25 +369,12 @@ Partial Class SGAMForm
         Me.deviceboxlabel.Text = "No selection needed, just enter these values into a .csv"
         Me.deviceboxlabel.Visible = False
         '
-        'QuickCommandToolStripMenuItem
-        '
-        Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem})
-        Me.QuickCommandToolStripMenuItem.Name = "QuickCommandToolStripMenuItem"
-        Me.QuickCommandToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.QuickCommandToolStripMenuItem.Text = "Quick Command"
-        '
-        'MakeUserToolStripMenuItem
-        '
-        Me.MakeUserToolStripMenuItem.Name = "MakeUserToolStripMenuItem"
-        Me.MakeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.MakeUserToolStripMenuItem.Text = "Make User"
-        '
         'SGAMForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(410, 219)
+        Me.ClientSize = New System.Drawing.Size(410, 218)
         Me.Controls.Add(Me.deviceboxlabel)
         Me.Controls.Add(Me.DevicesLabel)
         Me.Controls.Add(Me.DevicePropertyBox)
@@ -389,8 +396,8 @@ Partial Class SGAMForm
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.sgamMainMenuStrip
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(426, 258)
-        Me.MinimumSize = New System.Drawing.Size(426, 258)
+        Me.MaximumSize = New System.Drawing.Size(426, 257)
+        Me.MinimumSize = New System.Drawing.Size(426, 257)
         Me.Name = "SGAMForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SGAM Advanced"
@@ -438,4 +445,5 @@ Partial Class SGAMForm
     Friend WithEvents saveDialog As SaveFileDialog
     Friend WithEvents QuickCommandToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MakeUserToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
 End Class

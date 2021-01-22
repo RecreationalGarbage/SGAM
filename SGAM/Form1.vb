@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.IO
 Imports Ini 'inimod.dll namespace, the only C#
 Imports System.Security.Principal 'For use with checking admin privs
+Imports AutoUpdaterDotNET
 Public Class SGAMForm
     Dim uName As String = Environment.UserName 'Get the current logged on users name, is returned with Domain\ in front
     Dim iniPath As String = "C:\Program Files (x86)\SGAM\SGAM.ini" 'Defines the exact path to the .ini, used to be dynamic but I had issues with standard users using elevated permissions not returning the right path
@@ -264,9 +265,9 @@ Public Class SGAMForm
                 SecondPropertyBox.Enabled = True
                 Box1Text = " gam update"
             Case "Delete"
-                Dim SectionName As String = "GAM Path"
-                Dim nodelwarnstring As String = "NoDelWarn"
-                Dim valuedel As String = SGAMINI.IniReadValue(SectionName, nodelwarnstring)
+                'Dim SectionName As String = "GAM Path"
+                'Dim nodelwarnstring As String = "NoDelWarn"
+                'Dim valuedel As String = SGAMINI.IniReadValue(SectionName, nodelwarnstring)
                 'If valuedel = "" Then
                 'MessageBox.Show("Make sure empty cells are populated with # in your .csv file!", "Warning, check readme")
                 'ElseIf valuedel = "1" Then
@@ -645,7 +646,6 @@ Public Class SGAMForm
             End While
         End Using
     End Sub
-
     Private Sub HawkToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles HawkToolStripMenuItem1.Click
         'Hawk Style - Create student password
         Dim FinalPass As String
@@ -712,6 +712,7 @@ Public Class SGAMForm
         Box1Text = "quickuser"
 
         quickuserform.ShowDialog()
+
         Dim customuser As String = quickuserform.userbox.Text
         Dim custompassword As String = quickuserform.passbox.Text
         Dim customou As String = quickuserform.oubox.Text
@@ -722,5 +723,9 @@ Public Class SGAMForm
         argumentLabel.Clear()
         argumentLabel.AppendText(" user " + customuser + " password " + custompassword + " firstname " + customfirst + " lastname " + customlast + " ou " + customou)
     End Sub
-
+    Private Sub CheckForUpdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
+        AutoUpdater.OpenDownloadPage = True
+        AutoUpdater.Mandatory = True
+        AutoUpdater.Start("https://raw.githubusercontent.com/RecreationalGarbage/SGAM/advanced/sgamversion.xml")
+    End Sub
 End Class
