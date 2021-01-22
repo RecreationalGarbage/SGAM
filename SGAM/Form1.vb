@@ -83,11 +83,7 @@ Public Class SGAMForm
             Case Else
         End Select
 
-        'If customExist = ("") Then 'Checks to see if there is a custom command
-        'FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
-
-
-        Select Case Box1Text
+        Select Case Box1Text 'Main code for determining final gam command
             Case " print"
                 FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
             Case "quickuser"
@@ -102,6 +98,9 @@ Public Class SGAMForm
         'ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
         'FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
         'End If
+        'If customExist = ("") Then 'Checks to see if there is a custom command
+        'FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        'End if
         '/********This code should be cleaned up***********
 
         Dim myprocess As New Process
