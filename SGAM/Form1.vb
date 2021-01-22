@@ -65,7 +65,6 @@ Public Class SGAMForm
         Dim NoDelCsvPath As String = "Keepcsv" 'The specific key in the ini file that has the value for admin priv check
         Dim valuedel As String = SGAMINI.IniReadValue(SectionName, NoDelCsvPath) 'Checks the valudel string, blank means delete path to .csv file after execute, 1 is dont
         Dim CStringValue As String = ""
-        Dim quickerror As String = " redirect stderr " + errorfile
 
         'This case statment can be expanded to convert specific custom strings of text into commands, add matching string to "other" case of FirstPropertyBox
         Select Case OtherArguments
@@ -84,6 +83,10 @@ Public Class SGAMForm
             Case Else
         End Select
 
+        'If customExist = ("") Then 'Checks to see if there is a custom command
+        'FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
+
+
         Select Case Box1Text
             Case " print"
                 FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
@@ -92,6 +95,7 @@ Public Class SGAMForm
             Case Else
                 FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
         End Select
+
         '********This code should be cleaned up***********
         'If Box1Text IsNot " print" Then
         'FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
@@ -165,12 +169,6 @@ Public Class SGAMForm
             Case Else
                 FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
         End Select
-
-        'If Box1Text IsNot " print" Then
-        'FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
-        'ElseIf Box1Text = " print" Then 'This would probobly need to be changed if the custom button is re-enabled
-        'FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
-        'End If
 
         MessageBox.Show(FinalGamString, "Use File Menu to Copy")
 
@@ -442,7 +440,7 @@ Public Class SGAMForm
     End Sub
     Private Sub customCmdButton_Click(sender As Object, e As EventArgs) Handles customCmdButton.Click
         'This button is only disabled because I dont want to put the effort in to get all the commands listed, all the code for the button is complete though
-        '1/21/21 - I cleaned up code a bit, removed the main part of the code that finalizes the string, can be re-added from SGAM 1.03
+        '1/21/21 - I cleaned up code a bit, commented the main part of the code that finalizes the string
         Me.ShowInTaskbar = False 'otherwise, hide the main window and show the config creation one
         Me.Opacity = 0
         customGamCommand.ShowDialog()
@@ -585,7 +583,7 @@ Public Class SGAMForm
 
     End Sub
     Private Sub HawkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HawkToolStripMenuItem.Click
-        'Hawk Style - Create student username
+        'Hawk Style - Create username
         Dim FinalName As String
         Dim SplitName As String()
 
@@ -595,7 +593,11 @@ Public Class SGAMForm
         CSvPathCmd.Title = "Locate your text File"
         CSvPathCmd.Filter = "input.txt|*.txt|All Files|*.*"
         CSvPathCmd.FileName = ""
-        CSvPathCmd.ShowDialog()
+        Dim UserOpenRes As DialogResult = CSvPathCmd.ShowDialog()
+        If UserOpenRes = DialogResult.Cancel Then
+            Return
+        Else
+        End If
 
         Dim txtpath As String = CSvPathCmd.FileName 'path to text file
 
@@ -604,7 +606,11 @@ Public Class SGAMForm
         saveDialog.InitialDirectory = "C:\"
         saveDialog.Title = "Where to save file?"
         saveDialog.Filter = "output.txt|*.txt|All Files|*.*"
-        saveDialog.ShowDialog()
+        Dim SaveNameRes As DialogResult = saveDialog.ShowDialog()
+        If SaveNameRes = DialogResult.Cancel Then
+            Return
+        Else
+        End If
 
         Dim savepath As String = saveDialog.FileName
 
@@ -651,7 +657,11 @@ Public Class SGAMForm
         CSvPathCmd.Title = "Locate your text File"
         CSvPathCmd.Filter = "input.txt|*.txt|All Files|*.*"
         CSvPathCmd.FileName = ""
-        CSvPathCmd.ShowDialog()
+        Dim PassOpenRes As DialogResult = CSvPathCmd.ShowDialog()
+        If PassOpenRes = DialogResult.Cancel Then
+            Return
+        Else
+        End If
 
         Dim txtpath As String = CSvPathCmd.FileName 'path to text file
 
@@ -660,7 +670,11 @@ Public Class SGAMForm
         saveDialog.InitialDirectory = "C:\"
         saveDialog.Title = "Where to save file?"
         saveDialog.Filter = "output.txt|*.txt|All Files|*.*"
-        saveDialog.ShowDialog()
+        Dim PassSaveRes As DialogResult = saveDialog.ShowDialog()
+        If PassSaveRes = DialogResult.Cancel Then
+            Return
+        Else
+        End If
 
         Dim savepath As String = saveDialog.FileName
 

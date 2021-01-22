@@ -60,7 +60,7 @@ Partial Class quickuserform
         '
         'oubox
         '
-        Me.oubox.Location = New System.Drawing.Point(36, 146)
+        Me.oubox.Location = New System.Drawing.Point(37, 142)
         Me.oubox.Name = "oubox"
         Me.oubox.Size = New System.Drawing.Size(154, 20)
         Me.oubox.TabIndex = 3
@@ -70,7 +70,7 @@ Partial Class quickuserform
         Me.quickuserbut.Location = New System.Drawing.Point(77, 277)
         Me.quickuserbut.Name = "quickuserbut"
         Me.quickuserbut.Size = New System.Drawing.Size(75, 23)
-        Me.quickuserbut.TabIndex = 4
+        Me.quickuserbut.TabIndex = 6
         Me.quickuserbut.Text = "Done"
         Me.quickuserbut.UseVisualStyleBackColor = True
         '
@@ -98,7 +98,7 @@ Partial Class quickuserform
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(63, 127)
+        Me.Label3.Location = New System.Drawing.Point(64, 123)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(101, 16)
         Me.Label3.TabIndex = 7
@@ -108,7 +108,7 @@ Partial Class quickuserform
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(50, 184)
+        Me.Label4.Location = New System.Drawing.Point(50, 175)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(137, 16)
         Me.Label4.TabIndex = 9
@@ -116,10 +116,10 @@ Partial Class quickuserform
         '
         'firstnamebox
         '
-        Me.firstnamebox.Location = New System.Drawing.Point(37, 203)
+        Me.firstnamebox.Location = New System.Drawing.Point(37, 194)
         Me.firstnamebox.Name = "firstnamebox"
         Me.firstnamebox.Size = New System.Drawing.Size(154, 20)
-        Me.firstnamebox.TabIndex = 8
+        Me.firstnamebox.TabIndex = 4
         '
         'Label5
         '
@@ -136,7 +136,7 @@ Partial Class quickuserform
         Me.lastnamebox.Location = New System.Drawing.Point(37, 245)
         Me.lastnamebox.Name = "lastnamebox"
         Me.lastnamebox.Size = New System.Drawing.Size(154, 20)
-        Me.lastnamebox.TabIndex = 10
+        Me.lastnamebox.TabIndex = 5
         '
         'quickuserform
         '
