@@ -140,6 +140,7 @@ Partial Class quickuserform
         '
         'quickuserform
         '
+        Me.AcceptButton = Me.quickuserbut
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(241, 312)
@@ -156,6 +157,8 @@ Partial Class quickuserform
         Me.Controls.Add(Me.userbox)
         Me.Controls.Add(Me.TextBox1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaximumSize = New System.Drawing.Size(257, 351)
+        Me.MinimumSize = New System.Drawing.Size(257, 351)
         Me.Name = "quickuserform"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "SGAM"

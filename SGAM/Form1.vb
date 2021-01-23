@@ -3,7 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.IO
 Imports Ini 'inimod.dll namespace, the only C#
 Imports System.Security.Principal 'For use with checking admin privs
-Imports AutoUpdaterDotNET
+Imports AutoUpdaterDotNET 'https://github.com/ravibpatel/AutoUpdater.NET
 Public Class SGAMForm
     Dim uName As String = Environment.UserName 'Get the current logged on users name, is returned with Domain\ in front
     Dim iniPath As String = "C:\Program Files (x86)\SGAM\SGAM.ini" 'Defines the exact path to the .ini, used to be dynamic but I had issues with standard users using elevated permissions not returning the right path
@@ -212,13 +212,6 @@ Public Class SGAMForm
 
         Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
         GAMThread.Start() 'Execute the gam process when button is clicked
-
-        'If CsvPath = "" And Box1Text IsNot "quickuser" Then 'Please address this nonsense ASAP
-        'MessageBox.Show("Please select a .csv file.")
-        'Else
-        'Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
-        'GAMThread.Start() 'Execute the gam process when button is clicked
-        'End If
 
     End Sub
     Private Sub csvButton_Click(sender As Object, e As EventArgs) Handles csvButton.Click
@@ -582,8 +575,8 @@ Public Class SGAMForm
         End If
 
     End Sub
-    Private Sub HawkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HawkToolStripMenuItem.Click
-        'Hawk Style - Create username
+    Private Sub DefnameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DefnameToolStripMenuItem.Click
+        'Default Style - Create username
         Dim FinalName As String
         Dim SplitName As String()
 
@@ -624,6 +617,7 @@ Public Class SGAMForm
         Using SGAMParser As New Microsoft.VisualBasic.FileIO.TextFieldParser(txtpath)
             SGAMParser.TextFieldType = FileIO.FieldType.Delimited
             SGAMParser.SetDelimiters(",")
+            'SGAMParser.ReadLine() 'Enabling this skips the first line in the source document, useful to ignore headers for .csv files
 
             Dim ThisLine As String()
             While Not SGAMParser.EndOfData
@@ -646,8 +640,8 @@ Public Class SGAMForm
             End While
         End Using
     End Sub
-    Private Sub HawkToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles HawkToolStripMenuItem1.Click
-        'Hawk Style - Create student password
+    Private Sub DefpassToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DefpassToolStripMenuItem1.Click
+        'Default Style - Create password
         Dim FinalPass As String
 
         'Select text file with data in it
@@ -686,6 +680,7 @@ Public Class SGAMForm
         Using SGAMParser As New Microsoft.VisualBasic.FileIO.TextFieldParser(txtpath)
             SGAMParser.TextFieldType = FileIO.FieldType.Delimited
             SGAMParser.SetDelimiters(",")
+            'SGAMParser.ReadLine() 'Enabling this skips the first line in the source document, useful to ignore headers for .csv files
 
             Dim ThisLine As String()
             While Not SGAMParser.EndOfData

@@ -53,9 +53,9 @@ Partial Class SGAMForm
         Me.ToggleStartupCheckForAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UtilitiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MakeUsernameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HawkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DefnameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MakePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HawkToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DefpassToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuickCommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MakeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
@@ -298,35 +298,35 @@ Partial Class SGAMForm
         '
         'MakeUsernameToolStripMenuItem
         '
-        Me.MakeUsernameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HawkToolStripMenuItem})
+        Me.MakeUsernameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DefnameToolStripMenuItem})
         Me.MakeUsernameToolStripMenuItem.Name = "MakeUsernameToolStripMenuItem"
-        Me.MakeUsernameToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.MakeUsernameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MakeUsernameToolStripMenuItem.Text = "Make Username"
         '
-        'HawkToolStripMenuItem
+        'DefnameToolStripMenuItem
         '
-        Me.HawkToolStripMenuItem.Name = "HawkToolStripMenuItem"
-        Me.HawkToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
-        Me.HawkToolStripMenuItem.Text = "Hawk Style"
+        Me.DefnameToolStripMenuItem.Name = "DefnameToolStripMenuItem"
+        Me.DefnameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DefnameToolStripMenuItem.Text = "Default Style"
         '
         'MakePasswordToolStripMenuItem
         '
-        Me.MakePasswordToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HawkToolStripMenuItem1})
+        Me.MakePasswordToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DefpassToolStripMenuItem1})
         Me.MakePasswordToolStripMenuItem.Name = "MakePasswordToolStripMenuItem"
-        Me.MakePasswordToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.MakePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MakePasswordToolStripMenuItem.Text = "Make Password"
         '
-        'HawkToolStripMenuItem1
+        'DefpassToolStripMenuItem1
         '
-        Me.HawkToolStripMenuItem1.Name = "HawkToolStripMenuItem1"
-        Me.HawkToolStripMenuItem1.Size = New System.Drawing.Size(132, 22)
-        Me.HawkToolStripMenuItem1.Text = "Hawk Style"
+        Me.DefpassToolStripMenuItem1.Name = "DefpassToolStripMenuItem1"
+        Me.DefpassToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.DefpassToolStripMenuItem1.Text = "Default Style"
         '
         'QuickCommandToolStripMenuItem
         '
         Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem})
         Me.QuickCommandToolStripMenuItem.Name = "QuickCommandToolStripMenuItem"
-        Me.QuickCommandToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.QuickCommandToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.QuickCommandToolStripMenuItem.Text = "Quick Command"
         '
         'MakeUserToolStripMenuItem
@@ -439,9 +439,9 @@ Partial Class SGAMForm
     Friend WithEvents deviceboxlabel As Label
     Friend WithEvents UtilitiesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MakeUsernameToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HawkToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DefnameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MakePasswordToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HawkToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents DefpassToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents saveDialog As SaveFileDialog
     Friend WithEvents QuickCommandToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MakeUserToolStripMenuItem As ToolStripMenuItem
