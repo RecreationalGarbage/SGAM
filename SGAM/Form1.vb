@@ -625,9 +625,12 @@ Public Class SGAMForm
                     ThisLine = SGAMParser.ReadFields()
                     Dim RawData As String
                     For Each RawData In ThisLine
-                        SplitName = RawData.Split(" ")
 
-                        FinalName = yog + SplitName(0) & SplitName(1).Substring(0, 1) + suffix
+                        If RawData.Contains(" ") Then
+                            SplitName = RawData.Split(" ")
+                            FinalName = yog + SplitName(0) & SplitName(1).Substring(0, 1) + suffix
+                        Else FinalName = "NoSpaceFoundInString"
+                        End If
 
                         Dim outputFile As System.IO.StreamWriter
                         outputFile = My.Computer.FileSystem.OpenTextFileWriter(savepath, True)
