@@ -629,7 +629,7 @@ Public Class SGAMForm
                         If RawData.Contains(" ") Then
                             SplitName = RawData.Split(" ")
                             FinalName = yog + SplitName(0) & SplitName(1).Substring(0, 1) + suffix
-                        Else FinalName = "NoSpaceFoundInString"
+                        Else Continue For
                         End If
 
                         Dim outputFile As System.IO.StreamWriter
