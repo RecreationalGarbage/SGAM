@@ -99,9 +99,11 @@ Partial Class quickdevou
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.enterseriallabel)
         Me.Controls.Add(Me.quickdevouserialbox)
+        Me.MaximumSize = New System.Drawing.Size(332, 353)
+        Me.MinimumSize = New System.Drawing.Size(332, 353)
         Me.Name = "quickdevou"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "quickdevou"
+        Me.Text = "SGAM"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -143,6 +143,12 @@
     <Compile Include="quickdevou.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="quickpwreset.Designer.vb">
+      <DependentUpon>quickpwreset.vb</DependentUpon>
+    </Compile>
+    <Compile Include="quickpwreset.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="quickuserform.Designer.vb">
       <DependentUpon>quickuserform.vb</DependentUpon>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="quickdevou.resx">
       <DependentUpon>quickdevou.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quickpwreset.resx">
+      <DependentUpon>quickpwreset.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="quickuserform.resx">
       <DependentUpon>quickuserform.vb</DependentUpon>

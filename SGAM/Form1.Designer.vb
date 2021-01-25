@@ -58,12 +58,13 @@ Partial Class SGAMForm
         Me.DefpassToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuickCommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MakeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeDeviceOUToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.argBoxToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.DevicesLabel = New System.Windows.Forms.ListBox()
         Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
         Me.deviceboxlabel = New System.Windows.Forms.Label()
         Me.saveDialog = New System.Windows.Forms.SaveFileDialog()
-        Me.ChangeDeviceOUToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PasswordResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -307,7 +308,7 @@ Partial Class SGAMForm
         'DefnameToolStripMenuItem
         '
         Me.DefnameToolStripMenuItem.Name = "DefnameToolStripMenuItem"
-        Me.DefnameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DefnameToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.DefnameToolStripMenuItem.Text = "Default Style"
         '
         'MakePasswordToolStripMenuItem
@@ -325,7 +326,7 @@ Partial Class SGAMForm
         '
         'QuickCommandToolStripMenuItem
         '
-        Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem, Me.ChangeDeviceOUToolStripMenuItem})
+        Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem, Me.ChangeDeviceOUToolStripMenuItem, Me.PasswordResetToolStripMenuItem})
         Me.QuickCommandToolStripMenuItem.Name = "QuickCommandToolStripMenuItem"
         Me.QuickCommandToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.QuickCommandToolStripMenuItem.Text = "Quick Command"
@@ -335,6 +336,12 @@ Partial Class SGAMForm
         Me.MakeUserToolStripMenuItem.Name = "MakeUserToolStripMenuItem"
         Me.MakeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MakeUserToolStripMenuItem.Text = "Make User"
+        '
+        'ChangeDeviceOUToolStripMenuItem
+        '
+        Me.ChangeDeviceOUToolStripMenuItem.Name = "ChangeDeviceOUToolStripMenuItem"
+        Me.ChangeDeviceOUToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDeviceOUToolStripMenuItem.Text = "Change Device OU"
         '
         'DevicesLabel
         '
@@ -370,11 +377,11 @@ Partial Class SGAMForm
         Me.deviceboxlabel.Text = "No selection needed, just enter these values into a .csv"
         Me.deviceboxlabel.Visible = False
         '
-        'ChangeDeviceOUToolStripMenuItem
+        'PasswordResetToolStripMenuItem
         '
-        Me.ChangeDeviceOUToolStripMenuItem.Name = "ChangeDeviceOUToolStripMenuItem"
-        Me.ChangeDeviceOUToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ChangeDeviceOUToolStripMenuItem.Text = "Change Device OU"
+        Me.PasswordResetToolStripMenuItem.Name = "PasswordResetToolStripMenuItem"
+        Me.PasswordResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PasswordResetToolStripMenuItem.Text = "Password Reset"
         '
         'SGAMForm
         '
@@ -454,4 +461,5 @@ Partial Class SGAMForm
     Friend WithEvents MakeUserToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChangeDeviceOUToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PasswordResetToolStripMenuItem As ToolStripMenuItem
 End Class

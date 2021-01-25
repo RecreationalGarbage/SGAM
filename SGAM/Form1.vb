@@ -62,27 +62,27 @@ Public Class SGAMForm
         Dim CsvPath As String = SGAMINI.IniReadValue(SectionName, CSVIniKey) 'Save the inireadvalue output into a usable string
         Dim customExist As String = SGAMINI.IniReadValue(SectionName, CString) 'take the output from the custom command window and make it a string
         Dim argumentLabelText As String = argumentLabel.Text 'Convert the string from the hidden textbox into text, save it as a variable
-        Dim OtherArguments As String = argumentBox.SelectedItem 'Defines case statment to look at the selected item in argumentbox
+        'Dim OtherArguments As String = argumentBox.SelectedItem 'Defines case statment to look at the selected item in argumentbox
         Dim NoDelCsvPath As String = "Keepcsv" 'The specific key in the ini file that has the value for admin priv check
         Dim valuedel As String = SGAMINI.IniReadValue(SectionName, NoDelCsvPath) 'Checks the valudel string, blank means delete path to .csv file after execute, 1 is dont
         Dim CStringValue As String = ""
 
         'This case statment can be expanded to convert specific custom strings of text into commands, add matching string to "other" case of FirstPropertyBox
-        Select Case OtherArguments
-            Case ("Remove specific user from all groups")
-                Box1Text = ""
-                argumentLabelText = (" gam user ~user delete groups") 'removes specified user from all groups
-            Case ("Print Members of Specific Groups")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members group ~groupemail" + OutputFile)
-            Case ("Print Specific Users Group Membership")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members member ~user" + OutputFile)
-            Case ("Print Information for specific OUs")
-                Box1Text = ("")
-                argumentLabelText = (" gam info org ~ou" + OutputFile)
-            Case Else
-        End Select
+        'Select Case OtherArguments
+        'Case ("Remove specific user from all groups")
+        'Box1Text = ""
+        'argumentLabelText = (" gam user ~user delete groups") 'removes specified user from all groups
+        'Case ("Print Members of Specific Groups")
+        'Box1Text = (" gam print")
+        'argumentLabelText = (" group-members group ~groupemail" + OutputFile)
+        'Case ("Print Specific Users Group Membership")
+        'Box1Text = (" gam print")
+        'argumentLabelText = (" group-members member ~user" + OutputFile)
+        'Case ("Print Information for specific OUs")
+        'Box1Text = ("")
+        'argumentLabelText = (" gam info org ~ou" + OutputFile)
+        'Case Else
+        'End Select
 
         Select Case Box1Text 'Main code for determining final gam command
             Case " print"
@@ -92,6 +92,20 @@ Public Class SGAMForm
             Case "quickdevou"
                 FinalGamString = (quote + GamPath + quote + errorhandler + " print orgs name > " + quote + "C:\Program Files (x86)\SGAM\tmp.txt" + quote) ' + argumentLabelText) 'Final complete string prepared to be executed by cmd
             Case "quickdevou2" 'Finalgamstring is formed in the utilities/move device ou sub
+            Case "quickpwreset" 'See above
+            Case "Other"
+                Dim OtherArguments As String = argumentBox.SelectedItem
+                Select Case OtherArguments 'This case statment can be expanded to convert specific custom strings of text into commands, add matching string to "other" case of FirstPropertyBox
+                    Case ("Remove specific user from all groups")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " gam user ~user delete groups")
+                    Case ("Print Members of Specific Groups")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " group-members group ~groupemail" + OutputFile)
+                    Case ("Print Specific Users Group Membership")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " gam print group-members member ~user" + OutputFile)
+                    Case ("Print Information for specific OUs")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " gam info org ~ou" + OutputFile)
+                    Case Else
+                End Select
             Case Else
                 FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
         End Select
@@ -145,30 +159,29 @@ Public Class SGAMForm
         Dim CsvPath As String = SGAMINI.IniReadValue(SectionName, CSVIniKey) 'Save the inireadvalue output into a usable string
         Dim customExist As String = SGAMINI.IniReadValue(SectionName, CString) 'take the output from the custom command window and make it a string
         Dim argumentLabelText As String = argumentLabel.Text 'Convert the string from the hidden textbox into text, save it as a variable
-        Dim OtherArguments As String = argumentBox.SelectedItem
-        Dim CsvValue As String = ""
+        'Dim CsvValue As String = ""
 
-        'This case statment can be expanded to convert specific custom strings into commands, uses standard final string
-        Select Case OtherArguments
-            Case ("Remove specific user from all groups")
-                Box1Text = ""
-                argumentLabelText = (" gam user ~user delete groups") 'removes specified user from all groups
-            Case ("Print Members of Specific Groups")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members group ~groupemail" + OutputFile)
-            Case ("Print Specific Users Group Membership")
-                Box1Text = (" gam print")
-                argumentLabelText = (" group-members member ~user" + OutputFile)
-            Case ("Print Information for specific OUs")
-                Box1Text = ("")
-                argumentLabelText = (" gam info org ~ou" + OutputFile)
-        End Select
-
-        Select Case Box1Text
+        Select Case Box1Text 'Main code for determining final gam command
             Case " print"
                 FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
             Case "quickuser"
                 FinalGamString = (quote + GamPath + quote + errorhandler + " create" + argumentLabelText) 'Final complete string prepared to be executed by cmd
+            Case "quickdevou"
+                FinalGamString = (quote + GamPath + quote + errorhandler + " print orgs name > " + quote + "C:\Program Files (x86)\SGAM\tmp.txt" + quote) ' + argumentLabelText) 'Final complete string prepared to be executed by cmd
+            Case "quickdevou2" 'Finalgamstring is formed in the utilities/move device ou sub
+            Case "Other"
+                Dim OtherArguments As String = argumentBox.SelectedItem
+                Select Case OtherArguments
+                    Case ("Remove specific user from all groups")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " gam user ~user delete groups")
+                    Case ("Print Members of Specific Groups")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " group-members group ~groupemail" + OutputFile)
+                    Case ("Print Specific Users Group Membership")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " gam print group-members member ~user" + OutputFile)
+                    Case ("Print Information for specific OUs")
+                        FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + " gam info org ~ou" + OutputFile)
+                    Case Else
+                End Select
             Case Else
                 FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
         End Select
@@ -282,7 +295,7 @@ Public Class SGAMForm
                 SecondPropertyBox.Visible = False
                 PrintSecondPropertyBox.Visible = True
             Case "Other"
-                Box1Text = ""
+                Box1Text = "Other"
                 requiredlabel.Visible = True
                 csvCheckBox.Checked = False
                 csvCheckBox.Visible = True
@@ -739,8 +752,8 @@ Public Class SGAMForm
         Dim GamPath As String = SGAMINI.IniReadValue(SectionName, GamIniKey)
 
 
-        Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
-        GAMThread.Start() 'Execute the gam process when button is clicked
+        Dim OU1Thread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
+        OU1Thread.Start() 'Execute the gam process when button is clicked
 
         quickdevou.ShowDialog()
         Dim serial As String = quickdevou.quickdevouserialbox.Text
@@ -752,14 +765,6 @@ Public Class SGAMForm
         quickdevou.enterseriallabel.Visible = False
         quickdevou.seriallabel.Text = serial
         quickdevou.seriallabel.Visible = True
-
-        'Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
-        'GAMThread.Start() 'Execute the gam process when button is clicked
-
-
-        'While GAMThread.IsAlive
-
-        'End While
 
         Using SGAMParser As New Microsoft.VisualBasic.FileIO.TextFieldParser(tmpoutputfilepath)
             SGAMParser.TextFieldType = FileIO.FieldType.Delimited
@@ -792,9 +797,28 @@ Public Class SGAMForm
         Else
         End If
 
-        Box1Text = "quickdevou2" 'oupathstring + serial
-        FinalGamString = (quote + GamPath + quote + errorhandler + " print orgs name > " + quote + "C:\Program Files (x86)\SGAM\tmp.txt" + quote) ' + argumentLabelText) 'Final complete string prepared to be executed by cmd
+        Box1Text = "quickdevou2"
+        FinalGamString = (quote + GamPath + quote + errorhandler + " cros_sn " + serial + " update ou " + oupathstring) 'Final complete string prepared to be executed by cmd
 
+        Dim OU2Thread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
+        OU2Thread.Start() 'Execute the gam process when button is clicked
+
+    End Sub
+    Private Sub PasswordResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PasswordResetToolStripMenuItem.Click
+        Box1Text = "quickpwreset"
+        Dim SectionName As String = "GAM Path" 'Defines section of .ini file
+        Dim GamIniKey As String = "Directory" 'Defines key in .ini file
+        Dim GamPath As String = SGAMINI.IniReadValue(SectionName, GamIniKey)
+
+        quickpwreset.ShowDialog()
+        Dim uname As String = quickpwreset.pwresetuserbox.Text
+        Dim pword As String = quickpwreset.pwresetpwbox.Text
+        quickpwreset.Close()
+
+        FinalGamString = (quote + GamPath + quote + errorhandler + " update user " + uname + " password " + pword)
+
+        Dim pwthread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
+        pwthread.Start() 'Execute the gam process when button is clicked
 
     End Sub
 End Class
