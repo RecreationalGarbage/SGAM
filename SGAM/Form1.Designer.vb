@@ -63,6 +63,7 @@ Partial Class SGAMForm
         Me.DevicePropertyBox = New System.Windows.Forms.ComboBox()
         Me.deviceboxlabel = New System.Windows.Forms.Label()
         Me.saveDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.ChangeDeviceOUToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.sgamMainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -319,12 +320,12 @@ Partial Class SGAMForm
         'DefpassToolStripMenuItem1
         '
         Me.DefpassToolStripMenuItem1.Name = "DefpassToolStripMenuItem1"
-        Me.DefpassToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.DefpassToolStripMenuItem1.Size = New System.Drawing.Size(140, 22)
         Me.DefpassToolStripMenuItem1.Text = "Default Style"
         '
         'QuickCommandToolStripMenuItem
         '
-        Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem})
+        Me.QuickCommandToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MakeUserToolStripMenuItem, Me.ChangeDeviceOUToolStripMenuItem})
         Me.QuickCommandToolStripMenuItem.Name = "QuickCommandToolStripMenuItem"
         Me.QuickCommandToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.QuickCommandToolStripMenuItem.Text = "Quick Command"
@@ -332,7 +333,7 @@ Partial Class SGAMForm
         'MakeUserToolStripMenuItem
         '
         Me.MakeUserToolStripMenuItem.Name = "MakeUserToolStripMenuItem"
-        Me.MakeUserToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
+        Me.MakeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MakeUserToolStripMenuItem.Text = "Make User"
         '
         'DevicesLabel
@@ -368,6 +369,12 @@ Partial Class SGAMForm
         Me.deviceboxlabel.TabIndex = 22
         Me.deviceboxlabel.Text = "No selection needed, just enter these values into a .csv"
         Me.deviceboxlabel.Visible = False
+        '
+        'ChangeDeviceOUToolStripMenuItem
+        '
+        Me.ChangeDeviceOUToolStripMenuItem.Name = "ChangeDeviceOUToolStripMenuItem"
+        Me.ChangeDeviceOUToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDeviceOUToolStripMenuItem.Text = "Change Device OU"
         '
         'SGAMForm
         '
@@ -446,4 +453,5 @@ Partial Class SGAMForm
     Friend WithEvents QuickCommandToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MakeUserToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChangeDeviceOUToolStripMenuItem As ToolStripMenuItem
 End Class

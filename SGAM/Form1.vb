@@ -89,6 +89,9 @@ Public Class SGAMForm
                 FinalGamString = (quote + GamPath + quote + Box1Text + " " + Box2Text + argumentLabelText + OutputFile) 'used for gam print because I dont know how to code
             Case "quickuser"
                 FinalGamString = (quote + GamPath + quote + errorhandler + " create" + argumentLabelText) 'Final complete string prepared to be executed by cmd
+            Case "quickdevou"
+                FinalGamString = (quote + GamPath + quote + errorhandler + " print orgs name > " + quote + "C:\Program Files (x86)\SGAM\tmp.txt" + quote) ' + argumentLabelText) 'Final complete string prepared to be executed by cmd
+            Case "quickdevou2" 'Finalgamstring is formed in the utilities/move device ou sub
             Case Else
                 FinalGamString = (quote + GamPath + quote + errorhandler + " csv " + quote + CsvPath + quote + Box1Text + argumentLabelText) 'Final complete string prepared to be executed by cmd
         End Select
@@ -116,12 +119,12 @@ Public Class SGAMForm
         myprocess.Start()
 
         Dim SR As System.IO.StreamReader = myprocess.StandardOutput
-        Dim SW As System.IO.StreamWriter = myprocess.StandardInput
-        SW.WriteLine(FinalGamString) 'Write the FinalString directly to the command window
-        SW.WriteLine("exit") 'exits command prompt window
-        FinalGamString = SR.ReadToEnd 'returns results of the command window
-        SW.Close()
-        SR.Close()
+            Dim SW As System.IO.StreamWriter = myprocess.StandardInput
+            SW.WriteLine(FinalGamString) 'Write the FinalString directly to the command window
+            SW.WriteLine("exit") 'exits command prompt window
+            FinalGamString = SR.ReadToEnd 'returns results of the command window
+            SW.Close()
+            SR.Close()
 
         If valuedel = "" Then
             '*****This code removes the path to the csv after completion, comment for testing*****
@@ -204,6 +207,7 @@ Public Class SGAMForm
         If CsvPath = "" Then 'For quick commands which do not require a .csv
             Select Case Box1Text
                 Case "quickuser"
+                Case " print"
                 Case Else
                     MessageBox.Show("Please select a .csv file.")
                     Return
@@ -642,6 +646,7 @@ Public Class SGAMForm
                 End Try
             End While
         End Using
+
     End Sub
     Private Sub DefpassToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DefpassToolStripMenuItem1.Click
         'Default Style - Create password
@@ -725,5 +730,71 @@ Public Class SGAMForm
         AutoUpdater.OpenDownloadPage = True
         AutoUpdater.Mandatory = True
         AutoUpdater.Start("https://raw.githubusercontent.com/RecreationalGarbage/SGAM/advanced/sgamversion.xml")
+    End Sub
+    Private Sub ChangeDeviceOUToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDeviceOUToolStripMenuItem.Click
+        Box1Text = "quickdevou"
+        Dim tmpoutputfilepath As String = "C:\Program Files (x86)\SGAM\tmp.txt"
+        Dim SectionName As String = "GAM Path" 'Defines section of .ini file
+        Dim GamIniKey As String = "Directory" 'Defines key in .ini file
+        Dim GamPath As String = SGAMINI.IniReadValue(SectionName, GamIniKey)
+
+
+        Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
+        GAMThread.Start() 'Execute the gam process when button is clicked
+
+        quickdevou.ShowDialog()
+        Dim serial As String = quickdevou.quickdevouserialbox.Text
+        argumentLabel.Clear()
+        argumentLabel.AppendText(serial)
+        quickdevou.quickdevouserialbox.Visible = False
+        quickdevou.selectoulabel.Visible = True
+        quickdevou.quickoubox.Visible = True
+        quickdevou.enterseriallabel.Visible = False
+        quickdevou.seriallabel.Text = serial
+        quickdevou.seriallabel.Visible = True
+
+        'Dim GAMThread As New Threading.Thread(AddressOf CMDAutomate) 'Get info for process from the CMDAutomate private sub
+        'GAMThread.Start() 'Execute the gam process when button is clicked
+
+
+        'While GAMThread.IsAlive
+
+        'End While
+
+        Using SGAMParser As New Microsoft.VisualBasic.FileIO.TextFieldParser(tmpoutputfilepath)
+            SGAMParser.TextFieldType = FileIO.FieldType.Delimited
+            SGAMParser.SetDelimiters(",")
+            SGAMParser.ReadLine() 'Enabling this skips the first line in the source document, useful to ignore headers for .csv files
+
+            Dim ThisLine As String()
+            While Not SGAMParser.EndOfData
+                Try
+                    ThisLine = SGAMParser.ReadFields()
+                    Dim RawData As String
+                    For Each RawData In ThisLine
+                        If RawData.Contains("/") Then
+                            quickdevou.quickoubox.Items.Add(RawData & vbNewLine)
+                        Else Continue For
+                        End If
+                    Next
+                Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
+                    MsgBox("Line " & ex.Message & "is improperly formatted.")
+                End Try
+            End While
+        End Using
+
+        quickdevou.ShowDialog()
+        Dim oupathstring As String = quickdevou.quickoubox.SelectedItem
+        quickdevou.Close()
+
+        If File.Exists(tmpoutputfilepath) Then 'If there is a config file, delete it
+            System.IO.File.Delete(tmpoutputfilepath)
+        Else
+        End If
+
+        Box1Text = "quickdevou2" 'oupathstring + serial
+        FinalGamString = (quote + GamPath + quote + errorhandler + " print orgs name > " + quote + "C:\Program Files (x86)\SGAM\tmp.txt" + quote) ' + argumentLabelText) 'Final complete string prepared to be executed by cmd
+
+
     End Sub
 End Class

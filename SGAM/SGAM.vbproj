@@ -137,6 +137,12 @@
     <Compile Include="passform.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="quickdevou.Designer.vb">
+      <DependentUpon>quickdevou.vb</DependentUpon>
+    </Compile>
+    <Compile Include="quickdevou.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="quickuserform.Designer.vb">
       <DependentUpon>quickuserform.vb</DependentUpon>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="passform.resx">
       <DependentUpon>passform.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quickdevou.resx">
+      <DependentUpon>quickdevou.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="quickuserform.resx">
       <DependentUpon>quickuserform.vb</DependentUpon>
